@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Саша & Рита</h1>
-      <p class="date">3 сентября 2026</p>
+      <p class="date">4 сентября 2026</p>
       <p class="subtitle">Мы женимся и будем рады видеть вас!</p>
     </div>
   </section>
