@@ -89,7 +89,6 @@ const calculateCoords = () => {
   });
 };
 
-// Функция анимации сердечка при скролле (оставляем старую логику)
 const handleScroll = () => {
   const path = document.querySelector('#curve');
   if (!path || !heart.value || !container.value) return;
@@ -98,12 +97,16 @@ const handleScroll = () => {
   const rect = container.value.getBoundingClientRect();
   const viewHeight = window.innerHeight;
 
-  // Начинаем движение, когда верх секции доходит до середины экрана
-  const progress = (viewHeight / 2 - rect.top) / rect.height;
-  const scrollPercent = Math.max(0, Math.min(1, progress));
+  const scrollThreshold = rect.height * 0.9;
+  const progress = (viewHeight / 2 - rect.top) / scrollThreshold;
+
+  const scrollPercent = Math.max(0, Math.min(0.99, progress));
 
   const point = path.getPointAtLength(scrollPercent * pathLength);
-  heart.value.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+  const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
+  const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+
+  heart.value.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle - 90})`);
 };
 
 // Функция адаптации при ресайзе окна
