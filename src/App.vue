@@ -22,7 +22,7 @@ import ProgramSection from './components/ProgramSection.vue'
 import LocationSection from './components/LocationSection.vue'
 import DressCode from './components/DressCode.vue'
 import RSVPForm from './components/RSVPForm.vue'
-import CountdownTimer from "@/components/CountdownTimer.vue";
+import CountdownTimer from './components/CountdownTimer.vue'
 </script>
 
 <style>
