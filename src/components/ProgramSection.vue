@@ -100,7 +100,7 @@ const handleScroll = () => {
   const scrollThreshold = rect.height * 0.9;
   const progress = (viewHeight / 2 - rect.top) / scrollThreshold;
 
-  const scrollPercent = Math.max(0, Math.min(0.90, progress));
+  const scrollPercent = Math.max(0.05, Math.min(0.90, progress));
 
   const point = path.getPointAtLength(scrollPercent * pathLength);
   const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
