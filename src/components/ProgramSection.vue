@@ -80,7 +80,7 @@ const handleScroll = () => {
   const pathLength = path.getTotalLength();
 
   // 🔥 ключевая часть — считаем абсолютную позицию
-  const scrollY = window.scrollY;
+  const scrollY = window.scrollY + window.innerHeight / 3;
   const containerTop =
       container.value.getBoundingClientRect().top + window.scrollY;
   const containerHeight = container.value.offsetHeight;
