@@ -26,31 +26,31 @@
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  background-color: #f9f9f7;
+  background-color: var(--color-background-soft);
 }
 
 .map-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.2rem;
   margin-bottom: 35px;
-  color: #333;
+  color: var(--color-heading);
 }
 
 .map-card {
   width: 100%;
   max-width: 1000px;
-  background-color: #fff;
+  background-color: var(--color-background);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  border: 8px solid #fff; /* Белая рамка как на скриншоте */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border: 8px solid var(--color-background);
 }
 
 .map-caption {
   margin-top: 25px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
-  color: #666;
+  color: var(--color-text);
   font-style: italic;
   text-align: center;
 }

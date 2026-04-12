@@ -1,5 +1,12 @@
 <template>
   <main class="wedding-app">
+    <div class="theme-toggle">
+      <button @click="toggleTheme" class="toggle-button" :title="isDark ? 'Switch to Light' : 'Switch to Dark'">
+        <span v-if="isDark">☀️</span>
+        <span v-else>🌙</span>
+      </button>
+    </div>
+
     <button
         @click="isMenuOpen = !isMenuOpen"
         :class="['burger-button', { 'is-active': isMenuOpen }]"
@@ -32,7 +39,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
 import HeroSection from './components/HeroSection.vue'
 import ProgramSection from './components/ProgramSection.vue'
 import LocationSection from './components/LocationSection.vue'
@@ -41,9 +48,55 @@ import RSVPForm from './components/RSVPForm.vue'
 import CountdownTimer from './components/CountdownTimer.vue'
 
 const isMenuOpen = ref(false)
+const isDark = ref(false)
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+  const theme = isDark.value ? 'dark' : 'light'
+  document.documentElement.setAttribute('data-theme', theme)
+  localStorage.setItem('theme', theme)
+}
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) {
+    isDark.value = savedTheme === 'dark'
+  } else {
+    isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+})
 </script>
 
 <style scoped>
+/* Кнопка смены темы */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+}
+
+.toggle-button {
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover {
+  transform: scale(1.1);
+  border-color: var(--color-primary);
+}
+
 /* Кнопка бургера */
 .burger-button {
   position: fixed;
@@ -64,7 +117,7 @@ const isMenuOpen = ref(false)
 .line {
   width: 100%;
   height: 3px;
-  background-color: #333;
+  background-color: var(--color-heading);
   transition: all 0.3s ease-in-out;
 }
 
@@ -86,7 +139,7 @@ const isMenuOpen = ref(false)
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(230, 213, 195, 0.98);
+  background-color: var(--color-menu-bg);
   z-index: 90;
   display: flex;
   align-items: center;
@@ -109,7 +162,7 @@ const isMenuOpen = ref(false)
 .menu-links a {
   font-size: 2.5rem;
   text-decoration: none;
-  color: #624a44;
+  color: var(--color-secondary);
   font-family: 'Cormorant Garamond', serif;
   transition: opacity 0.3s;
 }

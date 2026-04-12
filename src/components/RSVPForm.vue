@@ -45,6 +45,7 @@ const submitForm = async () => {
   padding: 4rem 1rem;
   max-width: 500px;
   margin: 0 auto;
+  color: var(--color-text);
 }
 
 form {
@@ -55,17 +56,29 @@ form {
 
 input, select, textarea {
   padding: 0.8rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font-family: inherit;
+  background-color: var(--color-background-soft);
+  color: var(--color-heading);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-text);
 }
 
 button {
   padding: 1rem;
-  background: #333;
-  color: white;
+  background: var(--color-primary);
+  color: #fff;
   border: none;
   cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 button:disabled {

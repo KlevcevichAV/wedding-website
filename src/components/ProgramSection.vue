@@ -8,13 +8,13 @@
             id="curve"
             d="M200,0 Q280,150 200,300 T200,600 T200,900 T200,1000"
             fill="none"
-            stroke="#d1d1d1"
+            stroke="var(--color-border)"
             stroke-width="2"
         />
         <g id="heart-pointer" ref="heart">
           <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              fill="#78866b"
+              fill="var(--color-primary)"
               transform="scale(1.2) translate(-12, -12)"
           />
         </g>
@@ -137,7 +137,7 @@ onUnmounted(() => {
 <style scoped>
 .program-section {
   padding: 100px 0;
-  background-color: #fff;
+  background-color: var(--color-background);
   overflow: hidden;
   scroll-margin-top: 50px;
 }
@@ -147,6 +147,7 @@ onUnmounted(() => {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
   margin-bottom: 60px;
+  color: var(--color-heading);
 }
 
 .timeline-container {
@@ -181,11 +182,11 @@ onUnmounted(() => {
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background-color: #78866b;
+  background-color: var(--color-primary);
   border-radius: 50%;
   flex-shrink: 0;
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px #78866b;
+  border: 3px solid var(--color-background-soft);
+  box-shadow: 0 0 0 2px var(--color-primary);
   z-index: 3;
 }
 
@@ -216,7 +217,7 @@ onUnmounted(() => {
 .time {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #78866b;
+  color: var(--color-primary);
   display: block;
   margin-bottom: 4px;
 }
@@ -225,6 +226,7 @@ onUnmounted(() => {
   font-size: 1.2rem;
   margin: 0;
   line-height: 1.2;
+  color: var(--color-heading);
 }
 
 /* Адаптив для мобильных устройств */

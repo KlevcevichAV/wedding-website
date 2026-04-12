@@ -77,14 +77,14 @@ onUnmounted(() => {
 .timer-section {
   text-align: center;
   padding: 4rem 1rem;
-  background-color: #ffffff;
+  background-color: var(--color-background);
 }
 
 .timer-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.8rem;
   margin-bottom: 2rem;
-  color: #4a4a4a;
+  color: var(--color-heading);
 }
 
 .timer-container {
@@ -103,14 +103,14 @@ onUnmounted(() => {
 .value {
   font-size: 3rem;
   font-weight: 300;
-  color: #333;
+  color: var(--color-primary);
   line-height: 1;
 }
 
 .label {
   font-size: 0.9rem;
   text-transform: uppercase;
-  color: #999;
+  color: var(--color-text);
   margin-top: 0.5rem;
   letter-spacing: 1px;
 }
