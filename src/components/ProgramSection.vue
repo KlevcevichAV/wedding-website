@@ -79,11 +79,11 @@ const handleScroll = () => {
 
   const pathLength = path.getTotalLength();
   const rect = container.value.getBoundingClientRect();
-  const viewHeight = window.innerHeight;
 
-  const scrollThreshold = rect.height * 0.9;
-  const progress = (viewHeight / 2 - rect.top) / scrollThreshold;
-  const scrollPercent = Math.max(0.05, Math.min(0.90, progress));
+  const scrollThreshold = rect.height;
+  const progress = -rect.top / (scrollThreshold - window.innerHeight);
+
+  const scrollPercent = Math.max(0.05, Math.min(0.95, progress));
 
   const point = path.getPointAtLength(scrollPercent * pathLength);
   const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
@@ -99,13 +99,19 @@ const handleResize = () => {
 
 onMounted(async () => {
   await nextTick();
-  setTimeout(() => {
+
+  const init = () => {
     calculateCoords();
     handleScroll();
-  }, 150);
+  };
+
+  setTimeout(init, 200);
 
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('resize', handleResize);
+  window.addEventListener('hashchange', () => {
+    setTimeout(handleScroll, 100);
+  });
 });
 
 onUnmounted(() => {
@@ -119,6 +125,7 @@ onUnmounted(() => {
   padding: 100px 0;
   background-color: #fff;
   overflow: hidden;
+  scroll-margin-top: 50px;
 }
 
 .section-title {
