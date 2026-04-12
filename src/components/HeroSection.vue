@@ -1,54 +1,101 @@
 <template>
   <section class="hero">
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
-      <h1>Саша & Рита</h1>
-      <p class="date">4 сентября 2026</p>
-      <p class="subtitle">Мы женимся и будем рады видеть вас!</p>
+      <h1 class="main-title">WEDDING DAY</h1>
+      <div class="details">
+        <p class="names">Саша & Рита</p>
+        <p class="date">04.09.2026</p>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-
+// Компонент Vue 3 с использованием script setup
 </script>
 
 <style scoped>
+/* Подключаем элегантный шрифт с засечками */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
 .hero {
+  position: relative;
   height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  /* Используем твое фоновое изображение */
   background-image: url('@/assets/a9f2d2a21c8a09d1582ab3629fbd0423.jpg');
   background-size: cover;
   background-position: center;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2); /* Легкое общее затемнение */
 }
 
 .hero-content {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 3rem;
-  border-radius: 12px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-@media (max-width: 600px) {
-  .hero-content {
-    padding: 2rem 1rem;
-    width: 90%;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
+.main-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
-h1 {
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.8rem;
+  font-weight: 300;
+  margin: 0;
 }
 
 .date {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* Адаптивность под мобильные устройства */
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 4rem;
+  }
+
+  .names {
+    font-size: 2.8rem;
+  }
+
+  .date {
+    font-size: 2.0rem;
+  }
 }
 </style>
