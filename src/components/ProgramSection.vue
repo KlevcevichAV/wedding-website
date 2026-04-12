@@ -78,18 +78,32 @@ const handleScroll = () => {
   if (!path || !heart.value || !container.value) return;
 
   const pathLength = path.getTotalLength();
-  const rect = container.value.getBoundingClientRect();
 
-  const scrollThreshold = rect.height;
-  const progress = -rect.top / (scrollThreshold - window.innerHeight);
+  // 🔥 ключевая часть — считаем абсолютную позицию
+  const scrollY = window.scrollY;
+  const containerTop =
+      container.value.getBoundingClientRect().top + window.scrollY;
+  const containerHeight = container.value.offsetHeight;
 
-  const scrollPercent = Math.max(0.05, Math.min(0.95, progress));
+  // прогресс строго линейный от скролла
+  let progress = (scrollY - containerTop) / containerHeight;
 
-  const point = path.getPointAtLength(scrollPercent * pathLength);
-  const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
-  const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+  // ограничиваем
+  progress = Math.max(0.05, Math.min(0.95, progress));
 
-  heart.value.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle - 90})`);
+  const point = path.getPointAtLength(progress * pathLength);
+  const nextPoint = path.getPointAtLength(
+      Math.min(pathLength, progress * pathLength + 1)
+  );
+
+  const angle =
+      (Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * 180) /
+      Math.PI;
+
+  heart.value.setAttribute(
+      'transform',
+      `translate(${point.x}, ${point.y}) rotate(${angle - 90})`
+  );
 };
 
 const handleResize = () => {
