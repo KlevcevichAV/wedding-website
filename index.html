@@ -5,8 +5,20 @@
     <link rel="icon" href="/wedding-website/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vite App</title>
-    <script type="module" crossorigin src="/wedding-website/assets/index-BaDPE0ws.js"></script>
-    <link rel="stylesheet" crossorigin href="/wedding-website/assets/index-AZEgU6Om.css">
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        let theme;
+        if (savedTheme) {
+          theme = savedTheme;
+        } else {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <script type="module" crossorigin src="/wedding-website/assets/index-DGATYies.js"></script>
+    <link rel="stylesheet" crossorigin href="/wedding-website/assets/index-nw1lMiQz.css">
   </head>
   <body>
     <div id="app"></div>
