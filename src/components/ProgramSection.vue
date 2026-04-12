@@ -1,11 +1,35 @@
 <template>
-  <section class="program">
-    <h2>Программа дня</h2>
-    <div class="timeline">
-      <div v-for="(item, index) in timeline" :key="index" class="event">
-        <div class="time">{{ item.time }}</div>
-        <div class="description">
-          <h3>{{ item.title }}</h3>
+  <section class="program-section">
+    <h2 class="section-title">Программа дня</h2>
+
+    <div class="timeline-container" ref="container" :style="{ height: totalHeight + 'px' }">
+      <svg class="timeline-svg" viewBox="0 0 400 1000" preserveAspectRatio="none">
+        <path
+            id="curve"
+            d="M200,0 Q280,150 200,300 T200,600 T200,900 T200,1000"
+            fill="none"
+            stroke="#d1d1d1"
+            stroke-width="2"
+        />
+        <g id="heart-pointer" ref="heart">
+          <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              fill="#78866b"
+              transform="scale(1.2) translate(-12, -12)"
+          />
+        </g>
+      </svg>
+
+      <div
+          v-for="(item, index) in itemsWithCoords"
+          :key="index"
+          :class="['program-item', index % 2 === 0 ? 'left' : 'right']"
+          :style="{ left: item.x + 'px', top: item.y + 'px' }"
+      >
+        <div class="dot"></div>
+        <div class="content">
+          <span class="time">{{ item.time }}</span>
+          <h3 class="title">{{ item.title }}</h3>
         </div>
       </div>
     </div>
@@ -13,47 +37,191 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref, nextTick } from 'vue';
+
 const timeline = [
-  {time: '15:30', title: 'Welcome zone'},
-  {time: '16:00', title: 'Церемония'},
-  {time: '17:00', title: 'Начало банкета'},
-  {time: '18:30', title: 'Праздничный торт'},
-  {time: '17:00', title: 'Завершение свадьбы и начало счастливой жизни'}
-]
+  { time: '15:30', title: 'Welcome zone' },
+  { time: '16:00', title: 'Церемония' },
+  { time: '17:00', title: 'Начало банкета' },
+  { time: '18:30', title: 'Праздничный торт' },
+  { time: '22:00', title: 'Завершение свадьбы и начало счастливой жизни' }
+];
+
+const heart = ref(null);
+const container = ref(null);
+const itemsWithCoords = ref([]);
+const totalHeight = ref(1000);
+
+const calculateCoords = () => {
+  const path = document.querySelector('#curve');
+  if (!path || !container.value) return;
+
+  const pathLength = path.getTotalLength();
+  const containerWidth = container.value.offsetWidth;
+
+  totalHeight.value = Math.max(800, containerWidth * 2.5);
+  const currentHeight = totalHeight.value;
+
+  const steps = [0.1, 0.3, 0.5, 0.7, 0.9];
+
+  itemsWithCoords.value = timeline.map((item, index) => {
+    const svgPoint = path.getPointAtLength(steps[index] * pathLength);
+    const xPixel = (svgPoint.x / 400) * containerWidth;
+    const yPixel = (svgPoint.y / 1000) * currentHeight;
+
+    return { ...item, x: xPixel, y: yPixel };
+  });
+};
+
+const handleScroll = () => {
+  const path = document.querySelector('#curve');
+  if (!path || !heart.value || !container.value) return;
+
+  const pathLength = path.getTotalLength();
+  const rect = container.value.getBoundingClientRect();
+  const viewHeight = window.innerHeight;
+
+  const scrollThreshold = rect.height * 0.9;
+  const progress = (viewHeight / 2 - rect.top) / scrollThreshold;
+  const scrollPercent = Math.max(0.05, Math.min(0.90, progress));
+
+  const point = path.getPointAtLength(scrollPercent * pathLength);
+  const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
+  const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+
+  heart.value.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle - 90})`);
+};
+
+const handleResize = () => {
+  calculateCoords();
+  handleScroll();
+};
+
+onMounted(async () => {
+  await nextTick();
+  setTimeout(() => {
+    calculateCoords();
+    handleScroll();
+  }, 150);
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <style scoped>
-.program {
-  padding: 4rem 2rem;
+.program-section {
+  padding: 100px 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.section-title {
   text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
 }
 
-.timeline {
-  max-width: 600px;
-  margin: 0 auto;
-  border-left: 2px solid #ccc;
-  padding-left: 20px;
-}
-
-.event {
-  margin-bottom: 2rem;
-  text-align: left;
+.timeline-container {
   position: relative;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.event::before {
-  content: '';
+.timeline-svg {
   position: absolute;
-  left: -27px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background: #E6D5C3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.program-item {
+  position: absolute;
+  width: auto;
+  min-width: 120px;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Общая стилизация точки */
+.dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: #78866b;
   border-radius: 50%;
+  flex-shrink: 0;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px #78866b;
+  z-index: 3;
+}
+
+/* Позиционирование элементов слева от кривой */
+.program-item.left {
+  text-align: right;
+  justify-content: flex-end;
+  transform: translate(-100%, -50%); /* Сдвигаем весь блок влево от координаты X */
+  padding-right: 25px;
+}
+
+.program-item.left .dot {
+  left: 100%; /* Точка на правом краю блока */
+}
+
+/* Позиционирование элементов справа от кривой */
+.program-item.right {
+  text-align: left;
+  justify-content: flex-start;
+  transform: translate(0, -50%); /* Блок начинается от координаты X */
+  padding-left: 25px;
+}
+
+.program-item.right .dot {
+  left: 0; /* Точка на левом краю блока */
 }
 
 .time {
-  font-weight: bold;
-  color: #888;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #78866b;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .program-item {
+    max-width: 150px; /* Еще больше места для кривой на узких экранах */
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .time {
+    font-size: 1rem;
+  }
 }
 </style>
