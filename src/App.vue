@@ -58,13 +58,7 @@ const toggleTheme = () => {
 }
 
 onMounted(() => {
-  const savedTheme = localStorage.getItem('theme')
-  if (savedTheme) {
-    isDark.value = savedTheme === 'dark'
-  } else {
-    isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
-  document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+  isDark.value = document.documentElement.getAttribute('data-theme') === 'dark'
 })
 </script>
 

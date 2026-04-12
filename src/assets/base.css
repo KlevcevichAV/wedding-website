@@ -61,27 +61,6 @@
   --color-menu-bg: rgba(30, 30, 30, 0.98);
 }
 
-/* Optional: Support system preference */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-
-    --color-primary: #8a9b7c;
-    --color-secondary: #c9b097;
-
-    --color-overlay: rgba(0, 0, 0, 0.4);
-    --color-menu-bg: rgba(30, 30, 30, 0.98);
-  }
-}
-
 *,
 *::before,
 *::after {
