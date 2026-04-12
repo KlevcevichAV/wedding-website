@@ -78,18 +78,32 @@ const handleScroll = () => {
   if (!path || !heart.value || !container.value) return;
 
   const pathLength = path.getTotalLength();
-  const rect = container.value.getBoundingClientRect();
-  const viewHeight = window.innerHeight;
 
-  const scrollThreshold = rect.height * 0.9;
-  const progress = (viewHeight / 2 - rect.top) / scrollThreshold;
-  const scrollPercent = Math.max(0.05, Math.min(0.90, progress));
+  // 🔥 ключевая часть — считаем абсолютную позицию
+  const scrollY = window.scrollY + window.innerHeight / 3;
+  const containerTop =
+      container.value.getBoundingClientRect().top + window.scrollY;
+  const containerHeight = container.value.offsetHeight;
 
-  const point = path.getPointAtLength(scrollPercent * pathLength);
-  const nextPoint = path.getPointAtLength(Math.min(pathLength, scrollPercent * pathLength + 1));
-  const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+  // прогресс строго линейный от скролла
+  let progress = (scrollY - containerTop) / containerHeight;
 
-  heart.value.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle - 90})`);
+  // ограничиваем
+  progress = Math.max(0.05, Math.min(0.95, progress));
+
+  const point = path.getPointAtLength(progress * pathLength);
+  const nextPoint = path.getPointAtLength(
+      Math.min(pathLength, progress * pathLength + 1)
+  );
+
+  const angle =
+      (Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * 180) /
+      Math.PI;
+
+  heart.value.setAttribute(
+      'transform',
+      `translate(${point.x}, ${point.y}) rotate(${angle - 90})`
+  );
 };
 
 const handleResize = () => {
@@ -99,13 +113,19 @@ const handleResize = () => {
 
 onMounted(async () => {
   await nextTick();
-  setTimeout(() => {
+
+  const init = () => {
     calculateCoords();
     handleScroll();
-  }, 150);
+  };
+
+  setTimeout(init, 200);
 
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('resize', handleResize);
+  window.addEventListener('hashchange', () => {
+    setTimeout(handleScroll, 100);
+  });
 });
 
 onUnmounted(() => {
@@ -119,6 +139,7 @@ onUnmounted(() => {
   padding: 100px 0;
   background-color: #fff;
   overflow: hidden;
+  scroll-margin-top: 50px;
 }
 
 .section-title {
