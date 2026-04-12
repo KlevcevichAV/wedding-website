@@ -17,7 +17,7 @@ const colors = ['#E6D5C3', '#D4A373', '#FAEDCD', '#CCD5AE', '#E9EDC9']
 </script>
 
 <style scoped>
-.dress-code { padding: 4rem 2rem; background-color: #f9f9f9; text-align: center; }
+.dress-code { padding: 4rem 1rem; background-color: #f9f9f9; text-align: center; }
 .palette { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
 .swatch { width: 50px; height: 50px; border-radius: 50%; border: 1px solid #ddd; }
 </style>

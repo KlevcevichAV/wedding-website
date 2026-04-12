@@ -56,6 +56,13 @@
 }
 
 @media (max-width: 768px) {
+  .map-section {
+    padding: 40px 0;
+  }
+  .map-card {
+    border: none;
+    border-radius: 0;
+  }
   .map-card iframe {
     height: 350px;
   }

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-// Логика компонента (например, таймер обратного отсчета) может быть здесь
+
 </script>
 
 <style scoped>
@@ -28,6 +28,17 @@
   background: rgba(255, 255, 255, 0.8);
   padding: 3rem;
   border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .hero-content {
+    padding: 2rem 1rem;
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
 h1 {

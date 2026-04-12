@@ -42,7 +42,7 @@ const submitForm = async () => {
 
 <style scoped>
 .rsvp {
-  padding: 4rem 2rem;
+  padding: 4rem 1rem;
   max-width: 500px;
   margin: 0 auto;
 }
