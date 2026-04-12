@@ -9,8 +9,9 @@
     </div>
 
     <div class="map-card">
+
       <iframe
-          src="https://yandex.ru/map-widget/v1/?ll=27.379293%2C53.919293&z=16&pt=27.379293%2C53.919293%2Cpm2rdm~27.379293%2C53.919293%2Corg"
+          src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac1f3bfe9e9e99a1c16a4ce603e12a8291885df5c033615875bb2814b123d4928&amp;source=constructor"
           width="100%"
           height="450"
           frameborder="0"
