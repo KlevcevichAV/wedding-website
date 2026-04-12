@@ -2,6 +2,12 @@
   <section class="map-section">
     <h2 class="map-title">Место проведения</h2>
 
+    <!-- Новый блок с локацией -->
+    <div class="location-info">
+      <p class="location-name">TARASOVO VILLAGE</p>
+      <p class="location-address">(д. Тарасово, ул. Олимпийская, 3)</p>
+    </div>
+
     <div class="map-card">
       <iframe
           src="https://yandex.ru/map-widget/v1/?ll=27.379293%2C53.919293&z=16&pt=27.379293%2C53.919293%2Cpm2rdm~27.379293%2C53.919293%2Corg"
@@ -12,15 +18,10 @@
           style="position:relative;">
       </iframe>
     </div>
-
-    <p class="map-caption">
-      д. Тарасово, ул. Олимпийская, 3 (TARASOVO VILLAGE)
-    </p>
   </section>
 </template>
 
 <style scoped>
-/* Стили оставляем те же, они создают нужный дизайн */
 .map-section {
   display: flex;
   flex-direction: column;
@@ -32,12 +33,32 @@
 .map-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.2rem;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   color: var(--color-heading);
 }
 
+/* Новый блок */
+.location-info {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.location-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.location-address {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
 .map-card {
-  width: 100%;
+  width: 80%;
   max-width: 1000px;
   background-color: var(--color-background);
   border-radius: 16px;
@@ -46,23 +67,15 @@
   border: 8px solid var(--color-background);
 }
 
-.map-caption {
-  margin-top: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
-  color: var(--color-text);
-  font-style: italic;
-  text-align: center;
-}
-
 @media (max-width: 768px) {
   .map-section {
     padding: 40px 0;
   }
+
   .map-card {
-    border: none;
-    border-radius: 0;
+    border-radius: 10px;
   }
+
   .map-card iframe {
     height: 350px;
   }
