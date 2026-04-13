@@ -30,13 +30,44 @@ const form = reactive({
 
 const submitForm = async () => {
   loading.value = true
-  // Здесь будет логика отправки (например, на твой Java-бэкенд или в Telegram Bot)
-  console.log('Данные формы:', form)
 
-  setTimeout(() => {
-    alert('Спасибо! Мы получили ваш ответ.')
+  // Данные бота (в идеале вынести в .env файл)
+  const token = import.meta.env.VITE_TELEGRAM_TOKEN
+  const chatId = import.meta.env.VITE_CHAT_ID
+
+  // Формируем текст сообщения
+  const message = `
+🔔 **Новый ответ на приглашение!**
+━━━━━━━━━━━━━━━━━━
+👤 **Имя:** ${form.name}
+📍 **Статус:** ${form.status === 'yes' ? '✅ Приду' : '❌ Не смогу'}
+💬 **Комментарий:** ${form.dietaryNotes || 'Нет особых пожеланий'}
+━━━━━━━━━━━━━━━━━━
+  `
+
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        parse_mode: 'Markdown' // Чтобы текст был с жирным шрифтом
+      })
+    })
+
+    if (response.ok) {
+      alert('Спасибо! Ваш ответ успешно отправлен.')
+      // Очистка формы после успеха
+      form.name = ''
+      form.dietaryNotes = ''
+    }
+  } catch (error) {
+    console.error('Ошибка:', error)
+    alert('Произошла ошибка при отправке. Попробуйте еще раз.')
+  } finally {
     loading.value = false
-  }, 1000)
+  }
 }
 </script>
 
