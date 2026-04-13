@@ -89,7 +89,7 @@ const handleScroll = () => {
   let progress = (scrollY - containerTop) / containerHeight;
 
   // ограничиваем
-  progress = Math.max(0.05, Math.min(0.95, progress));
+  progress = Math.max(0.013, Math.min(0.943, progress));
 
   const point = path.getPointAtLength(progress * pathLength);
   const nextPoint = path.getPointAtLength(
