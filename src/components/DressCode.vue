@@ -1,19 +1,41 @@
 <template>
   <section class="dress-code">
-    <h2>Дресс-код</h2>
-    <p>Будем признательны, если вы поддержите цветовую гамму нашей свадьбы:</p>
-    <div class="palette">
-      <img v-for="image in images"
-           :key="image"
-           class="swatch"
-           :src="image"
-           alt="Wedding color">
-      </img>
+    <div class="container">
+      <h2 class="section-title">Дресс-код</h2>
+      <p class="description">Будем признательны, если вы поддержите цветовую гамму нашей свадьбы:</p>
+      
+      <div class="palette">
+        <div v-for="(image, index) in images" 
+             :key="index" 
+             class="swatch-wrapper"
+             :style="{ transitionDelay: `${index * 50}ms` }">
+          <img :src="image" class="swatch" alt="Wedding color" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-outline" @click="openGallery('women')">
+          Примеры образов для женщин
+        </button>
+        <button class="btn-outline" @click="openGallery('men')">
+          Примеры образов для мужчин
+        </button>
+      </div>
     </div>
+
+    <ImageGallery 
+      :images="currentGalleryImages" 
+      :is-open="isGalleryOpen" 
+      @close="isGalleryOpen = false" 
+    />
   </section>
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+import ImageGallery from './ImageGallery.vue'
+
+// Color palette images
 import img1 from '@/assets/dress-code/color/5332410083638811325.webp'
 import img2 from '@/assets/dress-code/color/5332410083638811329.webp'
 import img3 from '@/assets/dress-code/color/5332410083638811335.webp'
@@ -25,15 +47,131 @@ import img8 from '@/assets/dress-code/color/5332410083638811349.webp'
 import img9 from '@/assets/dress-code/color/5332410083638811351.webp'
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9]
+
+// Gallery images - using glob import if possible or manual
+// Since I can't easily glob with Vite in this environment without seeing the setup, I'll list them or use a helper
+const womenImages = Object.values(import.meta.glob('@/assets/dress-code/ledies/*.JPG', { eager: true, import: 'default' }))
+const menImages = Object.values(import.meta.glob('@/assets/dress-code/men/*.JPG', { eager: true, import: 'default' }))
+
+const isGalleryOpen = ref(false)
+const galleryType = ref('women')
+
+const currentGalleryImages = computed(() => {
+  return galleryType.value === 'women' ? womenImages : menImages
+})
+
+const openGallery = (type) => {
+  galleryType.value = type
+  isGalleryOpen.value = true
+}
 </script>
 
 <style scoped>
-.dress-code { padding: 4rem 1rem; background-color: var(--color-background); text-align: center; color: var(--color-text); }
-.palette { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-.swatch { width: 80px; height: 100px; object-fit: contain; }
+.dress-code {
+  padding: 4rem 1rem;
+  background-color: var(--color-background);
+  text-align: center;
+  color: var(--color-text);
+}
 
-@media (max-width: 600px) {
-  .palette { gap: 0.5rem; justify-content: center; padding: 0 1rem; }
-  .swatch { width: 60px; height: 75px; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  justify-items: center;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swatch-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.swatch-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.swatch {
+  width: 70px;
+  height: 85px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-outline:hover {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+@media (max-width: 768px) {
+  .palette {
+    gap: 1.2rem;
+  }
+  
+  .swatch {
+    width: 60px;
+    height: 75px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn-outline {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .palette {
+    gap: 0.8rem;
+  }
+  
+  .swatch {
+    width: 50px;
+    height: 65px;
+  }
 }
 </style>
