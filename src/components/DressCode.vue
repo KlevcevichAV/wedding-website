@@ -94,18 +94,13 @@ const openGallery = (type) => {
 
 .palette {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   justify-items: center;
   margin-bottom: 4rem;
-}
-
-/* For 9 items, 5 in first row, 4 in second to look balanced */
-.palette {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .swatch-wrapper {
@@ -153,9 +148,7 @@ const openGallery = (type) => {
   }
   
   .palette {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
   }
   
   .swatch {
@@ -177,7 +170,7 @@ const openGallery = (type) => {
 
 @media (max-width: 480px) {
   .palette {
-    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
   
   .swatch {
