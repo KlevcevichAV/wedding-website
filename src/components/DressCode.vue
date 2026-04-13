@@ -68,7 +68,7 @@ const openGallery = (type) => {
 
 <style scoped>
 .dress-code {
-  padding: 6rem 1rem;
+  padding: 4rem 1rem;
   background-color: var(--color-background);
   text-align: center;
   color: var(--color-text);
@@ -82,12 +82,12 @@ const openGallery = (type) => {
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1.1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -95,10 +95,10 @@ const openGallery = (type) => {
 .palette {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
   justify-items: center;
-  margin-bottom: 4rem;
-  max-width: 600px;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -112,8 +112,8 @@ const openGallery = (type) => {
 }
 
 .swatch {
-  width: 90px;
-  height: 110px;
+  width: 70px;
+  height: 85px;
   object-fit: contain;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
@@ -121,12 +121,12 @@ const openGallery = (type) => {
 .actions {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 .btn-outline {
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
   background: transparent;
   border: 1px solid var(--color-text);
   color: var(--color-text);
@@ -143,17 +143,13 @@ const openGallery = (type) => {
 }
 
 @media (max-width: 768px) {
-  .dress-code {
-    padding: 4rem 1rem;
-  }
-  
   .palette {
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
   
   .swatch {
-    width: 70px;
-    height: 85px;
+    width: 60px;
+    height: 75px;
   }
   
   .actions {
@@ -170,12 +166,12 @@ const openGallery = (type) => {
 
 @media (max-width: 480px) {
   .palette {
-    gap: 1rem;
+    gap: 0.8rem;
   }
   
   .swatch {
-    width: 60px;
-    height: 75px;
+    width: 50px;
+    height: 65px;
   }
 }
 </style>
