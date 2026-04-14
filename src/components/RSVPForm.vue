@@ -15,10 +15,24 @@
             :rules="[rules.required]"
             required
             class="mt-2"
+            @update:model-value="onStatusChange"
           >
             <v-radio label="С удовольствием приду" value="yes"></v-radio>
             <v-radio label="К сожалению, не смогу" value="no"></v-radio>
           </v-radio-group>
+        </div>
+
+        <!-- Declining Guest Name -->
+        <div v-if="form.status === 'no'" class="form-section">
+          <p class="question-text">Пожалуйста, представьтесь:</p>
+          <v-text-field
+            v-model="form.declinerName"
+            label="Ваши Имя и Фамилия"
+            :rules="[rules.required]"
+            variant="outlined"
+            density="comfortable"
+            class="mt-2"
+          ></v-text-field>
         </div>
 
         <template v-if="form.status === 'yes'">
@@ -150,6 +164,7 @@ const alcoholOptions = [
 const form = reactive({
   status: 'yes',
   guests: [''],
+  declinerName: '',
   favoriteSong: '',
   wishes: '',
   alcohol: [],
@@ -159,6 +174,14 @@ const form = reactive({
 const rules = {
   required: v => !!v || 'Это поле обязательно',
   requiredSelection: v => (v && v.length > 0) || 'Пожалуйста, выберите хотя бы один вариант'
+}
+
+const onStatusChange = () => {
+  if (form.status === 'no') {
+    form.guests = ['']
+  } else {
+    form.declinerName = ''
+  }
 }
 
 const addGuest = () => {
@@ -183,7 +206,7 @@ const submitForm = async () => {
   
   if (form.status === 'no') {
     message += `📍 **Статус:** ❌ К сожалению, не смогу\n`
-    message += `👤 **От:** ${form.guests[0] || 'Неизвестно'}\n`
+    message += `👤 **От:** ${form.declinerName || 'Неизвестно'}\n`
   } else {
     message += `📍 **Статус:** ✅ С удовольствием приду\n`
     message += `👥 **Гости:**\n${form.guests.filter(g => g).map(g => `  • ${g}`).join('\n')}\n`
@@ -232,6 +255,7 @@ const submitForm = async () => {
 const resetForm = () => {
   form.status = 'yes'
   form.guests = ['']
+  form.declinerName = ''
   form.favoriteSong = ''
   form.wishes = ''
   form.alcohol = []
