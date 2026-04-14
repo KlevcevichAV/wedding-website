@@ -24,6 +24,7 @@
         <a href="#location" @click="isMenuOpen = false">Место проведения</a>
         <a href="#dresscode" @click="isMenuOpen = false">Дресс код</a>
         <a href="#chat" @click="isMenuOpen = false">Общий чат</a>
+        <a href="#wishes" @click="isMenuOpen = false">Пожелания</a>
         <a href="#rsvp" @click="isMenuOpen = false">Анкета</a>
       </div>
     </nav>
@@ -35,6 +36,7 @@
       <LocationSection id="location"/>
       <DressCode id="dresscode"/>
       <JoinToChat id="chat"/>
+      <WishesSection id="wishes"/>
       <RSVPForm id="rsvp"/>
     </div>
   </main>
@@ -49,6 +51,7 @@ import DressCode from './components/DressCode.vue'
 import RSVPForm from './components/RSVPForm.vue'
 import CountdownTimer from './components/CountdownTimer.vue'
 import JoinToChat from "@/components/JoinToChat.vue";
+import WishesSection from "@/components/WishesSection.vue";
 
 const isMenuOpen = ref(false)
 const isDark = ref(false)
