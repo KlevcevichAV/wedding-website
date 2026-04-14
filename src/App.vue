@@ -24,8 +24,8 @@
         <a href="#location" @click="isMenuOpen = false">Место проведения</a>
         <a href="#dresscode" @click="isMenuOpen = false">Дресс код</a>
         <a href="#chat" @click="isMenuOpen = false">Общий чат</a>
-        <a href="#wishes" @click="isMenuOpen = false">Пожелания</a>
         <a href="#rsvp" @click="isMenuOpen = false">Анкета</a>
+        <a href="#wishes" @click="isMenuOpen = false">Пожелания</a>
       </div>
     </nav>
 
@@ -36,8 +36,8 @@
       <LocationSection id="location"/>
       <DressCode id="dresscode"/>
       <JoinToChat id="chat"/>
-      <WishesSection id="wishes"/>
       <RSVPForm id="rsvp"/>
+      <WishesSection id="wishes"/>
     </div>
   </main>
 </template>
