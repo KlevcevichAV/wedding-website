@@ -8,6 +8,12 @@
       <p class="location-address">(д. Тарасово, ул. Олимпийская, 3)</p>
     </div>
 
+    <div class="location-gallery">
+      <div v-for="(img, index) in locationImages" :key="index" class="gallery-item">
+        <img :src="img" alt="Location photo" class="location-photo" />
+      </div>
+    </div>
+
     <div class="map-card">
 
       <iframe
@@ -21,6 +27,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const locationImages = Object.values(import.meta.glob('@/assets/location/*.{webp,jpeg,JPG,png}', { eager: true, import: 'default' }))
+</script>
 
 <style scoped>
 .map-section {
@@ -58,6 +68,37 @@
   opacity: 0.8;
 }
 
+.location-gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  flex: 1;
+  min-width: 300px;
+  max-width: 480px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.location-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.location-photo:hover {
+  transform: scale(1.05);
+}
+
 .map-card {
   width: 80%;
   max-width: 1000px;
@@ -79,6 +120,16 @@
 
   .map-card iframe {
     height: 350px;
+  }
+
+  .gallery-item {
+    min-width: 100%;
+    height: 250px;
+  }
+
+  .location-gallery {
+    gap: 15px;
+    padding: 0 10px;
   }
 }
 </style>
