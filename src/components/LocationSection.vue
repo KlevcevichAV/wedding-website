@@ -74,15 +74,15 @@ const locationImages = Object.values(import.meta.glob('@/assets/location/*.{webp
   justify-content: center;
   margin-bottom: 30px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1400px;
   flex-wrap: wrap;
 }
 
 .gallery-item {
   flex: 1;
   min-width: 300px;
-  max-width: 480px;
-  height: 300px;
+  max-width: 700px;
+  height: 400px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@ const locationImages = Object.values(import.meta.glob('@/assets/location/*.{webp
 
 .map-card {
   width: 80%;
-  max-width: 1000px;
+  max-width: 500px;
   background-color: var(--color-background);
   border-radius: 16px;
   overflow: hidden;
