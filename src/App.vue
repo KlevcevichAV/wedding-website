@@ -25,7 +25,7 @@
         <a href="#dresscode" @click="isMenuOpen = false">Дресс код</a>
         <a href="#chat" @click="isMenuOpen = false">Общий чат</a>
         <a href="#rsvp" @click="isMenuOpen = false">Анкета</a>
-        <a href="#wishes" @click="isMenuOpen = false">Пожелания</a>
+        <a href="#wishes" @click="isMenuOpen = false">Детали</a>
       </div>
     </nav>
 
