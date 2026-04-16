@@ -77,7 +77,7 @@ onUnmounted(() => {
 .timer-section {
   text-align: center;
   padding: 4rem 1rem;
-  background-color: var(--color-background);
+  background-color: var(--color-background-soft);
 }
 
 .timer-title {

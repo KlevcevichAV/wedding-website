@@ -38,7 +38,7 @@
 <style scoped>
 .dress-code {
   padding: 4rem 1rem;
-  background-color: var(--color-background);
+  background-color: var(--color-background-soft);
   text-align: center;
   color: var(--color-text);
 }
