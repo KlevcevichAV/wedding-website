@@ -26,6 +26,7 @@
         <a href="#rsvp" @click="isMenuOpen = false">Анкета</a>
         <a href="#wishes" @click="isMenuOpen = false">Детали</a>
         <a href="#chat" @click="isMenuOpen = false">Общий чат</a>
+        <a href="#final" @click="isMenuOpen = false">Финал</a>
       </div>
     </nav>
 
@@ -38,6 +39,7 @@
       <RSVPForm id="rsvp"/>
       <WishesSection id="wishes"/>
       <JoinToChat id="chat"/>
+      <FinalSection id="final"/>
     </div>
   </main>
 </template>
@@ -52,6 +54,7 @@ import RSVPForm from './components/RSVPForm.vue'
 import CountdownTimer from './components/CountdownTimer.vue'
 import JoinToChat from "@/components/JoinToChat.vue";
 import WishesSection from "@/components/WishesSection.vue";
+import FinalSection from "@/components/FinalSection.vue";
 
 const isMenuOpen = ref(false)
 const isDark = ref(false)
