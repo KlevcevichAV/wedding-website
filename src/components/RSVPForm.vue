@@ -84,11 +84,21 @@
               density="comfortable"
               class="mt-2"
             ></v-select>
+            
+            <v-text-field
+              v-if="form.alcohol.includes('Другое')"
+              v-model="form.alcoholCustom"
+              label="Что именно вы предпочитаете?"
+              :rules="[rules.required]"
+              variant="outlined"
+              density="comfortable"
+              class="mt-2"
+            ></v-text-field>
           </div>
 
           <!-- Favorite Song -->
           <div class="form-section">
-            <p class="question-text">Есть ли у вас любимая песня, которая точно заставит вас выйти на танцпол?</p>
+            <p class="question-text">Есть ли у вас любимая песня или исполнитель, который точно заставит вас выйти на танцпол?</p>
             <v-text-field
               v-model="form.favoriteSong"
               label="Название трека"
@@ -168,6 +178,7 @@ const form = reactive({
   favoriteSong: '',
   wishes: '',
   alcohol: [],
+  alcoholCustom: '',
   funFact: ''
 })
 
@@ -210,7 +221,14 @@ const submitForm = async () => {
   } else {
     message += `📍 **Статус:** ✅ С удовольствием приду\n`
     message += `👥 **Гости:**\n${form.guests.filter(g => g).map(g => `  • ${g}`).join('\n')}\n`
-    message += `🍷 **Алкоголь:** ${form.alcohol.join(', ')}\n`
+    
+    const alcoholList = form.alcohol.map(item => {
+      if (item === 'Другое' && form.alcoholCustom) {
+        return `Другое (${form.alcoholCustom})`
+      }
+      return item
+    })
+    message += `🍷 **Алкоголь:** ${alcoholList.join(', ')}\n`
     
     if (form.favoriteSong) {
       message += `🎵 **Любимая песня:** ${form.favoriteSong}\n`
@@ -259,6 +277,7 @@ const resetForm = () => {
   form.favoriteSong = ''
   form.wishes = ''
   form.alcohol = []
+  form.alcoholCustom = ''
   form.funFact = ''
   if (formRef.value) {
     formRef.value.resetValidation()

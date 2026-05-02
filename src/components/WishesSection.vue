@@ -3,7 +3,7 @@
     <div class="container">
       <h2 class="section-title">
         <span class="line-1">Смотря какой <span class="accent fabric">Fabric</span>,</span>
-        <span class="line-2">смотря какие <span class="accent details">Details</span></span>
+        <span class="line-2">смотря сколько <span class="accent details">Details</span></span>
       </h2>
       <p class="description">
         Пожалуйста, не ломайте голову над выбором подарка! Наши вкусы настолько специфичны, что угодить нам могут только

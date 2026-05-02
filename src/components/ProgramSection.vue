@@ -40,11 +40,11 @@
 import { onMounted, onUnmounted, ref, nextTick } from 'vue';
 
 const timeline = [
-  { time: '15:30', title: 'Welcome zone' },
-  { time: '16:00', title: 'Церемония' },
+  { time: '15:30', title: 'Сбор гостей' },
+  { time: '16:30', title: 'Церемония' },
   { time: '17:00', title: 'Начало банкета' },
-  { time: '18:30', title: 'Праздничный торт' },
-  { time: '22:00', title: 'Завершение свадьбы и начало счастливой жизни' }
+  { time: '22:00', title: 'Праздничный торт' },
+  { time: '23:00', title: 'Завершение свадьбы и начало счастливой жизни' }
 ];
 
 const heart = ref(null);

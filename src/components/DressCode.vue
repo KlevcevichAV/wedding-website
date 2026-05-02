@@ -2,8 +2,7 @@
   <section class="dress-code">
     <div class="container">
       <h2 class="section-title">Дресс-код</h2>
-      <p class="description">Будем признательны, если вы поддержите цветовую гамму нашей свадьбы:</p>
-      
+      <p class="description">Для нас важно ваше присутствие, и нам будет очень приятно, если ваши образы поддержат атмосферу нашего дня</p>
       <div class="palette">
         <div v-for="(image, index) in images" 
              :key="index" 
