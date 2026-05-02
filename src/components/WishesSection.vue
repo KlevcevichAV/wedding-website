@@ -24,7 +24,7 @@
 <style scoped>
 .wishes {
   padding: 4rem 1rem;
-  background-color: var(--color-background-soft);
+  background-color: var(--color-background);
   color: var(--color-text);
 }
 
