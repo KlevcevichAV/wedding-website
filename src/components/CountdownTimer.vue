@@ -5,19 +5,19 @@
     <div v-if="!isExpired" class="timer-container">
       <div class="timer-item">
         <span class="value">{{ timeLeft.days }}</span>
-        <span class="label">дней</span>
+        <span class="label">{{ declensions.days }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.hours }}</span>
-        <span class="label">часов</span>
+        <span class="label">{{ declensions.hours }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.minutes }}</span>
-        <span class="label">минут</span>
+        <span class="label">{{ declensions.minutes }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.seconds }}</span>
-        <span class="label">секунд</span>
+        <span class="label">{{ declensions.seconds }}</span>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue'
+import {ref, onMounted, onUnmounted, computed} from 'vue'
 
 const targetDate = new Date('2026-09-04T15:30:00').getTime()
 
@@ -41,6 +41,22 @@ const timeLeft = ref({
 })
 
 let timerInterval = null
+
+const getDeclension = (number, titles) => {
+  const cases = [2, 0, 1, 1, 1, 2]
+  return titles[
+    number % 100 > 4 && number % 100 < 20
+      ? 2
+      : cases[number % 10 < 5 ? number % 10 : 5]
+  ]
+}
+
+const declensions = computed(() => ({
+  days: getDeclension(timeLeft.value.days, ['день', 'дня', 'дней']),
+  hours: getDeclension(timeLeft.value.hours, ['час', 'часа', 'часов']),
+  minutes: getDeclension(timeLeft.value.minutes, ['минута', 'минуты', 'минут']),
+  seconds: getDeclension(timeLeft.value.seconds, ['секунда', 'секунды', 'секунд'])
+}))
 
 const updateCountdown = () => {
   const now = new Date().getTime()

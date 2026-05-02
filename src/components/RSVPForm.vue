@@ -39,7 +39,7 @@
           <!-- Guests Section -->
           <div class="form-section">
             <p class="question-text">Кто будет присутствовать?</p>
-            <p class="sub-description">Пожалуйста, укажите имя и фамилию всех гостей, включая вашего +1, точно так же, как в приглашении.</p>
+            <p class="sub-description">Пожалуйста, укажите имена и фамилии всех гостей, включая вашего +1, точно так же, как в приглашении.</p>
             
             <div v-for="(guest, index) in form.guests" :key="index" class="guest-input-wrapper">
               <v-text-field

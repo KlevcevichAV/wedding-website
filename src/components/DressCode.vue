@@ -14,7 +14,7 @@
 
       <div class="actions">
         <button class="btn-outline" @click="openGallery('women')">
-          Примеры образов для женщин
+          Примеры образов для девушек
         </button>
         <button class="btn-outline" @click="openGallery('men')">
           Примеры образов для мужчин
