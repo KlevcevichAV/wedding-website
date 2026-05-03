@@ -33,7 +33,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import ImageGallery from './ImageGallery.vue'
-import backgroundMusic from '@/assets/1050761114_1_tiktok_69f75785db7821_01365855.mp3'
+import backgroundMusicMen from '@/assets/1050761114_1_tiktok_69f75785db7821_01365855.mp3'
+import backgroundMusicWomen from '@/assets/-4884169657562792318 (audio-extractor.net).mp3'
 
 // Color palette images
 import img1 from '@/assets/dress-code/color/5332410083638811325.webp'
@@ -55,10 +56,12 @@ const menImages = Object.values(import.meta.glob('@/assets/dress-code/men/*.JPG'
 
 const isGalleryOpen = ref(false)
 const galleryType = ref('women')
-const audio = ref(null)
+const audioMen = ref(null)
+const audioWomen = ref(null)
 
 onMounted(() => {
-  audio.value = new Audio(backgroundMusic)
+  audioMen.value = new Audio(backgroundMusicMen)
+  audioWomen.value = new Audio(backgroundMusicWomen)
 })
 
 const currentGalleryImages = computed(() => {
@@ -68,17 +71,23 @@ const currentGalleryImages = computed(() => {
 const openGallery = (type) => {
   galleryType.value = type
   isGalleryOpen.value = true
-  if (audio.value) {
-    audio.value.currentTime = 0
-    audio.value.play().catch(e => console.log('Audio play failed:', e))
+  
+  const currentAudio = type === 'women' ? audioWomen.value : audioMen.value
+  if (currentAudio) {
+    currentAudio.currentTime = 0
+    currentAudio.play().catch(e => console.log('Audio play failed:', e))
   }
 }
 
 const closeGallery = () => {
   isGalleryOpen.value = false
-  if (audio.value) {
-    audio.value.pause()
-    audio.value.currentTime = 0
+  if (audioMen.value) {
+    audioMen.value.pause()
+    audioMen.value.currentTime = 0
+  }
+  if (audioWomen.value) {
+    audioWomen.value.pause()
+    audioWomen.value.currentTime = 0
   }
 }
 </script>
