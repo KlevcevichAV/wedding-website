@@ -25,14 +25,15 @@
     <ImageGallery 
       :images="currentGalleryImages" 
       :is-open="isGalleryOpen" 
-      @close="isGalleryOpen = false" 
+      @close="closeGallery" 
     />
   </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import ImageGallery from './ImageGallery.vue'
+import backgroundMusic from '@/assets/1050761114_1_tiktok_69f75785db7821_01365855.mp3'
 
 // Color palette images
 import img1 from '@/assets/dress-code/color/5332410083638811325.webp'
@@ -54,6 +55,11 @@ const menImages = Object.values(import.meta.glob('@/assets/dress-code/men/*.JPG'
 
 const isGalleryOpen = ref(false)
 const galleryType = ref('women')
+const audio = ref(null)
+
+onMounted(() => {
+  audio.value = new Audio(backgroundMusic)
+})
 
 const currentGalleryImages = computed(() => {
   return galleryType.value === 'women' ? womenImages : menImages
@@ -62,6 +68,18 @@ const currentGalleryImages = computed(() => {
 const openGallery = (type) => {
   galleryType.value = type
   isGalleryOpen.value = true
+  if (audio.value) {
+    audio.value.currentTime = 0
+    audio.value.play().catch(e => console.log('Audio play failed:', e))
+  }
+}
+
+const closeGallery = () => {
+  isGalleryOpen.value = false
+  if (audio.value) {
+    audio.value.pause()
+    audio.value.currentTime = 0
+  }
 }
 </script>
 
