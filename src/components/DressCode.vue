@@ -61,7 +61,9 @@ const audioWomen = ref(null)
 
 onMounted(() => {
   audioMen.value = new Audio(backgroundMusicMen)
+  audioMen.value.loop = true
   audioWomen.value = new Audio(backgroundMusicWomen)
+  audioWomen.value.loop = true
 })
 
 const currentGalleryImages = computed(() => {
