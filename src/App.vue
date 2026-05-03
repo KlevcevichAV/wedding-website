@@ -31,6 +31,7 @@
     </nav>
 
     <div :class="['content-wrapper', { 'blurred': isMenuOpen }]">
+      <DecorativeDecor />
       <HeroSection id="hero"/>
       <CountdownTimer id="timer"/>
       <ProgramSection id="program"/>
@@ -55,6 +56,7 @@ import CountdownTimer from './components/CountdownTimer.vue'
 import JoinToChat from "@/components/JoinToChat.vue";
 import WishesSection from "@/components/WishesSection.vue";
 import FinalSection from "@/components/FinalSection.vue";
+import DecorativeDecor from "@/components/DecorativeDecor.vue";
 
 const isMenuOpen = ref(false)
 const isDark = ref(false)
@@ -176,6 +178,8 @@ onMounted(() => {
 
 .content-wrapper {
   transition: filter 0.5s ease;
+  position: relative;
+  min-height: 100vh;
 }
 
 .content-wrapper.blurred {
