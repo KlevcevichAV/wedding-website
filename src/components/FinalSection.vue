@@ -15,7 +15,7 @@
 
 <style scoped>
 .final-section {
-  padding: 6rem 1rem;
+  padding: 6rem 1rem 0.5rem 1rem;
   background-color: var(--color-background);
   text-align: center;
 }
@@ -23,6 +23,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 0;
 }
 
 .content {
@@ -30,6 +31,7 @@
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .title {
@@ -63,12 +65,13 @@
   font-size: 2.5rem;
   color: #78866b;
   margin-top: 3rem;
+  margin-bottom: 0;
   line-height: 1.2;
 }
 
 @media (max-width: 768px) {
   .final-section {
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 0.5rem 1rem;
   }
   
   .signature {
