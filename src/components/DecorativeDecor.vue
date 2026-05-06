@@ -36,9 +36,9 @@ import HeartIcon from './icons/HeartIcon.vue'
 
 const desktopDecor = [
   // Веточки по углам или краям (новые варианты)
-  { type: 'leaf', variant: 1, top: '2%', left: '1%', size: 180, color: '#78866b', rotate: -15, opacity: 0.5 },
-  { type: 'leaf', variant: 2, top: '15%', right: '2%', size: 150, color: '#78866b', rotate: 45, opacity: 0.4 },
-  { type: 'leaf', variant: 3, top: '35%', left: '2%', size: 160, color: '#78866b', rotate: 180, opacity: 0.4 },
+  { type: 'leaf', variant: 1, top: '28%', left: '1%', size: 180, color: '#78866b', rotate: -15, opacity: 0.5 },
+  { type: 'leaf', variant: 2, top: '35%', right: '2%', size: 150, color: '#78866b', rotate: 45, opacity: 0.4 },
+  { type: 'leaf', variant: 3, top: '40%', left: '2%', size: 160, color: '#78866b', rotate: 180, opacity: 0.4 },
   { type: 'leaf', variant: 1, top: '55%', right: '1%', size: 180, color: '#78866b', rotate: -160, opacity: 0.5 },
   { type: 'leaf', variant: 2, top: '75%', left: '1%', size: 150, color: '#78866b', rotate: 20, opacity: 0.4 },
   { type: 'leaf', variant: 3, top: '95%', right: '2%', size: 170, color: '#78866b', rotate: -30, opacity: 0.5 },
@@ -54,7 +54,9 @@ const desktopDecor = [
   { type: 'heart', top: '22%', left: '15%', size: 28, color: '#78866b', rotate: 10 },
   
   // Section 3 (Program)
-  { type: 'heart', top: '28%', left: '8%', size: 26, color: '#78866b', rotate: 5 },
+  { type: 'heart', top: '28%', left: '32%', size: 26, color: '#78866b', rotate: 5 },
+  { type: 'heart', top: '29%', left: '25%', size: 18, color: '#624a44', rotate: -15 },
+  { type: 'heart', top: '31%', left: '30%', size: 22, color: '#78866b', rotate: 20 },
   { type: 'heart', top: '32%', right: '25%', size: 18, color: '#624a44', rotate: 12 },
   { type: 'heart', top: '35%', left: '45%', size: 22, color: '#78866b', rotate: -8 },
   
@@ -96,9 +98,9 @@ const desktopDecor = [
 ]
 
 const mobileDecor = [
-  { type: 'leaf', variant: 1, top: '2%', left: '-5%', size: 120, color: '#78866b', rotate: -10, opacity: 0.5 },
-  { type: 'leaf', variant: 2, top: '25%', right: '-5%', size: 100, color: '#78866b', rotate: 45, opacity: 0.4 },
-  { type: 'leaf', variant: 3, top: '50%', left: '-5%', size: 110, color: '#78866b', rotate: 160, opacity: 0.4 },
+  { type: 'leaf', variant: 1, top: '30%', left: '-5%', size: 120, color: '#78866b', rotate: -10, opacity: 0.5 },
+  { type: 'leaf', variant: 2, top: '40%', right: '-5%', size: 100, color: '#78866b', rotate: 45, opacity: 0.4 },
+  { type: 'leaf', variant: 3, top: '55%', left: '-5%', size: 110, color: '#78866b', rotate: 160, opacity: 0.4 },
   { type: 'leaf', variant: 1, top: '75%', right: '-5%', size: 100, color: '#78866b', rotate: -30, opacity: 0.5 },
   { type: 'leaf', variant: 2, top: '95%', left: '-5%', size: 130, color: '#78866b', rotate: -170, opacity: 0.5 },
   
@@ -108,7 +110,8 @@ const mobileDecor = [
   { type: 'heart', top: '15%', right: '15%', size: 16, color: '#624a44', rotate: 5 },
   { type: 'heart', top: '20%', left: '10%', size: 22, color: '#78866b', rotate: 10 },
   { type: 'heart', top: '25%', right: '5%', size: 14, color: '#624a44', rotate: -15 },
-  { type: 'heart', top: '30%', left: '15%', size: 18, color: '#78866b', rotate: 20 },
+  { type: 'heart', top: '28%', left: '20%', size: 16, color: '#78866b', rotate: -10 },
+  { type: 'heart', top: '30%', left: '25%', size: 18, color: '#78866b', rotate: 20 },
   { type: 'heart', top: '35%', right: '10%', size: 20, color: '#624a44', rotate: -10 },
   { type: 'heart', top: '40%', left: '8%', size: 16, color: '#78866b', rotate: 15 },
   { type: 'heart', top: '45%', right: '12%', size: 18, color: '#624a44', rotate: -5 },
