@@ -51,6 +51,7 @@ const desktopDecor = [
   
   // Section 2 (Timer)
   { type: 'heart', top: '18%', right: '10%', size: 22, color: '#624a44', rotate: -15 }, // Right side of timer
+  { type: 'heart', top: '15%', right: '90%', size: 32, color: '#624a44', rotate: -15 }, // Right side of timer
   { type: 'heart', top: '22%', left: '15%', size: 28, color: '#78866b', rotate: 10 }, // Left side of timer
   
   // Section 3 (Program)
