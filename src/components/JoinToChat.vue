@@ -5,7 +5,8 @@
 
       <p class="description">
         Увидеть нашу свадьбу вашими глазами — бесценный подарок.
-        Будем рады вашим фото, видео и эмоциям в общем чате 💛
+        Будем рады вашим фото, видео и эмоциям в общем чате
+        <HeartIcon :size="18" color="#78866b" filled class="heart-inline" />
       </p>
 
       <a
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
-
+import HeartIcon from './icons/HeartIcon.vue'
 </script>
 
 <style scoped>
@@ -59,6 +60,12 @@
   margin-bottom: 2rem;
   line-height: 1.6;
   opacity: 0.9;
+}
+
+.heart-inline {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-left: 4px;
 }
 
 .telegram-button {
