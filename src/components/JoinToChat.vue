@@ -64,8 +64,10 @@ import HeartIcon from './icons/HeartIcon.vue'
 
 .heart-inline {
   display: inline-block;
-  vertical-align: text-bottom;
+  vertical-align: middle;
   margin-left: 4px;
+  position: relative;
+  top: -1px;
 }
 
 .telegram-button {
