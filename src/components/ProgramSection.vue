@@ -11,6 +11,15 @@
             stroke="var(--color-border)"
             stroke-width="2"
         />
+        <path
+            id="curve-progress"
+            d="M200,0 Q280,150 200,300 T200,600 T200,900 T200,1000"
+            fill="none"
+            stroke="#78866b"
+            stroke-width="3"
+            stroke-linecap="round"
+            style="stroke-dasharray: 0 10000;"
+        />
         <g id="heart-pointer" ref="heart">
           <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
@@ -104,6 +113,11 @@ const handleScroll = () => {
       'transform',
       `translate(${point.x}, ${point.y}) rotate(${angle - 90})`
   );
+
+  const progressPath = document.querySelector('#curve-progress');
+  if (progressPath) {
+    progressPath.style.strokeDasharray = `${progress * pathLength} ${pathLength}`;
+  }
 };
 
 const handleResize = () => {
