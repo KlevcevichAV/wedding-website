@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, watch} from 'vue'
 import HeroSection from './components/HeroSection.vue'
 import ProgramSection from './components/ProgramSection.vue'
 import LocationSection from './components/LocationSection.vue'
@@ -59,6 +59,14 @@ import FinalSection from "@/components/FinalSection.vue";
 import DecorativeDecor from "@/components/DecorativeDecor.vue";
 
 const isMenuOpen = ref(false)
+
+watch(isMenuOpen, (val) => {
+  if (val) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
 const isDark = ref(false)
 
 const toggleTheme = () => {
@@ -79,7 +87,7 @@ onMounted(() => {
   position: fixed;
   top: 2rem;
   left: 2rem;
-  z-index: 100;
+  z-index: 200;
 }
 
 .toggle-button {
@@ -107,7 +115,7 @@ onMounted(() => {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  z-index: 100;
+  z-index: 200;
   width: 40px;
   height: 30px;
   display: flex;
@@ -145,12 +153,13 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   background-color: var(--color-menu-bg);
-  z-index: 90;
+  z-index: 150;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   transform: translateX(100%);
+  overflow-y: auto;
 }
 
 .side-menu.is-open {
@@ -162,6 +171,8 @@ onMounted(() => {
   flex-direction: column;
   gap: 2rem;
   text-align: center;
+  padding: 8rem 2rem 6rem;
+  width: 100%;
 }
 
 .menu-links a {
@@ -170,6 +181,19 @@ onMounted(() => {
   color: var(--color-secondary);
   font-family: 'Cormorant Garamond', serif;
   transition: opacity 0.3s;
+  padding: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .menu-links a {
+    font-size: 3rem;
+  }
+  .side-menu {
+    align-items: flex-start;
+  }
+  .menu-links {
+    padding: 8rem 2rem 6rem;
+  }
 }
 
 .menu-links a:hover {
