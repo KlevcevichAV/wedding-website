@@ -169,9 +169,9 @@ onMounted(() => {
 .menu-links {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   text-align: center;
-  padding: 8rem 2rem 6rem;
+  padding: 2rem 2rem 3rem;
   width: 100%;
 }
 
@@ -192,7 +192,7 @@ onMounted(() => {
     align-items: flex-start;
   }
   .menu-links {
-    padding: 8rem 2rem 6rem;
+    padding: 1rem 2rem 3rem;
   }
 }
 
