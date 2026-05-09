@@ -29,12 +29,18 @@
   align-items: center;
   justify-content: center;
   /* Используем твое фоновое изображение */
-  background-image: url('@/assets/a9f2d2a21c8a09d1582ab3629fbd0423.jpg');
+  background-image: url('@/assets/IMG_9362.JPG');
   background-size: cover;
-  background-position: center;
+  background-position: center 20%;
   color: white;
   text-align: center;
   overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    background-position: center 25%;
+  }
 }
 
 .hero-overlay {
@@ -85,17 +91,27 @@
 }
 
 /* Адаптивность под мобильные устройства */
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .main-title {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 
   .names {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-title {
     font-size: 2.8rem;
   }
 
+  .names {
+    font-size: 2.2rem;
+  }
+
   .date {
-    font-size: 2.0rem;
+    font-size: 1.4rem;
   }
 }
 </style>
