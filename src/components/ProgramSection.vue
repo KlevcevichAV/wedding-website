@@ -32,7 +32,7 @@
       <div
           v-for="(item, index) in itemsWithCoords"
           :key="index"
-          :class="['program-item', index % 2 === 0 ? 'left' : 'right']"
+          :class="['program-item', index % 2 === 0 ? 'left' : 'right', { reached: item.reached }]"
           :style="{ left: item.x + 'px', top: item.y + 'px' }"
       >
         <div class="dot"></div>
@@ -78,7 +78,7 @@ const calculateCoords = () => {
     const xPixel = (svgPoint.x / 400) * containerWidth;
     const yPixel = (svgPoint.y / 1000) * currentHeight;
 
-    return { ...item, x: xPixel, y: yPixel };
+    return { ...item, x: xPixel, y: yPixel, progressStep: steps[index], reached: false };
   });
 };
 
@@ -118,6 +118,11 @@ const handleScroll = () => {
   if (progressPath) {
     progressPath.style.strokeDasharray = `${progress * pathLength} ${pathLength}`;
   }
+
+  // Обновляем состояние точек
+  itemsWithCoords.value.forEach(item => {
+    item.reached = progress >= item.progressStep;
+  });
 };
 
 const handleResize = () => {
@@ -196,12 +201,18 @@ onUnmounted(() => {
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background-color: var(--color-primary);
+  background-color: #a0a0a0; /* Серый цвет для "непройденных" точек */
   border-radius: 50%;
   flex-shrink: 0;
   border: 3px solid var(--color-background-soft);
-  box-shadow: 0 0 0 2px var(--color-primary);
+  box-shadow: 0 0 0 2px #a0a0a0;
   z-index: 3;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-item.reached .dot {
+  background-color: #78866b;
+  box-shadow: 0 0 0 2px #78866b;
 }
 
 /* Позиционирование элементов слева от кривой */
