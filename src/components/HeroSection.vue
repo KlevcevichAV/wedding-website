@@ -75,7 +75,7 @@
 .details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.2rem;
 }
 
 .names {
@@ -106,6 +106,10 @@
 }
 
 @media (max-width: 600px) {
+  .hero-content {
+    margin-top: -1rem; /* Чуть ниже на мобильных по просьбе пользователя */
+  }
+
   .main-title {
     font-size: 2.8rem;
   }
