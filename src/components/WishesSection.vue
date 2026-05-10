@@ -44,7 +44,7 @@ import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 .description {
   text-align: center; /* Текст описания оставляем по центру */
   font-size: 1.1rem;
-  margin-top: 1.5rem;
+  margin-top: 0;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -69,7 +69,7 @@ import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
