@@ -18,7 +18,7 @@
 
 <style scoped>
 /* Подключаем элегантный шрифт с засечками */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
 
 .hero {
   position: relative;
@@ -57,13 +57,14 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
+  margin-top: -4rem;
 }
 
 .main-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.15em;
   margin: 0;
   line-height: 1.1;
@@ -79,13 +80,14 @@
 .names {
   font-family: 'Cormorant Garamond', serif;
   font-size: 4.8rem;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
 }
 
 .date {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.8rem;
+  font-weight: 500;
   letter-spacing: 0.1em;
   margin: 0;
 }
