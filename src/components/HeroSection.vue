@@ -63,11 +63,12 @@
 .main-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.15em;
   margin: 0;
   line-height: 1.1;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .details {
@@ -79,8 +80,9 @@
 .names {
   font-family: 'Cormorant Garamond', serif;
   font-size: 4.8rem;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .date {
@@ -88,6 +90,7 @@
   font-size: 1.8rem;
   letter-spacing: 0.1em;
   margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Адаптивность под мобильные устройства */
