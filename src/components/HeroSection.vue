@@ -102,6 +102,11 @@
 }
 
 @media (max-width: 600px) {
+  .names {
+    font-size: 2.2rem;
+    white-space: nowrap;
+  }
+
   .date {
     font-size: 1.4rem;
   }
