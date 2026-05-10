@@ -58,6 +58,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  margin-top: -3rem; /* Сдвигаем контент чуть выше центра */
 }
 
 .main-title {
