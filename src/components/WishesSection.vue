@@ -10,14 +10,18 @@
         деньги!
       </p>
 
-      <p class="description">
-        Из-за романтического путешествия мы не сможем в полной мере насладиться красотой и ароматом цветов, зато подаренная Вами бутылочка вина для домашней коллекции придется кстати после возвращения
-      </p>
+      <div class="wine-text-container">
+        <WineBottleIcon :size="60" :rotate="-15" color="#78866b" class="wine-icon" />
+        <p class="description wine-description">
+          Чтобы наш праздник оставил долгое послевкусие, мы решили собрать «Свадебную винотеку». Вместо цветов, которые быстро отцветают, будем рады получить от вас бутылку вина. Каждая из них станет поводом вспомнить о вас и о нашем особенном дне в будущем.
+        </p>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 // Используем Vue 3
 </script>
 
@@ -79,5 +83,30 @@
   margin-top: 3rem;
   line-height: 1.6;
   opacity: 0.9;
+}
+
+.wine-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.wine-description {
+  margin-top: 0; /* Убираем верхний отступ, так как он есть у контейнера */
+  max-width: 600px;
+}
+
+.wine-icon {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .wine-text-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 </style>
