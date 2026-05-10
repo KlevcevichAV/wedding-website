@@ -57,33 +57,30 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-top: -3rem; /* Сдвигаем контент чуть выше центра */
+  gap: 2rem;
 }
 
 .main-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 5rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.15em;
   margin: 0;
   line-height: 1.1;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .details {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 
 .names {
   font-family: 'Cormorant Garamond', serif;
   font-size: 4.8rem;
-  font-weight: 400;
+  font-weight: 300;
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .date {
@@ -91,7 +88,6 @@
   font-size: 1.8rem;
   letter-spacing: 0.1em;
   margin: 0;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Адаптивность под мобильные устройства */
@@ -106,17 +102,8 @@
 }
 
 @media (max-width: 600px) {
-  .hero-content {
-    margin-top: -1rem; /* Чуть ниже на мобильных по просьбе пользователя */
-  }
-
-  .names {
-    margin: 0; /* Возвращаем стандартное поведение (убираем отрицательный отступ) */
-  }
-
   .date {
     font-size: 1.4rem;
-    margin-top: -0.8rem; /* Поднимаем дату еще выше к именам */
   }
 }
 </style>
