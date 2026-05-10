@@ -57,7 +57,7 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 .main-title {
