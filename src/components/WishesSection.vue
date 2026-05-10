@@ -37,34 +37,14 @@ import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
-}
-
-
-/* Общие стили для "гламурных" слов */
-.accent {
-  font-family: 'Alex Brush', cursive; /* Или другой рукописный шрифт, например 'Great Vibes' */
-  font-weight: 400;
-  text-transform: none;
-  font-size: 1.2em;
-  color: #78866b;
-  display: inline-block;
-  padding: 0 5px;
-}
-
-.fabric {
-  /* Можно добавить специфичный стиль именно для Fabric */
-}
-
-.details {
-  /* Можно добавить специфичный стиль именно для Details */
 }
 
 .description {
   text-align: center; /* Текст описания оставляем по центру */
   font-size: 1.1rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   line-height: 1.6;
   opacity: 0.9;
 }
