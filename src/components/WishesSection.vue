@@ -1,10 +1,7 @@
 <template>
   <section class="wishes">
     <div class="container">
-      <h2 class="section-title">
-        <span class="line-1">Смотря какой <span class="accent fabric">Fabric</span>,</span>
-        <span class="line-2">смотря сколько <span class="accent details">Details</span></span>
-      </h2>
+      <h2 class="section-title">Детали</h2>
       <p class="description">
         Пожалуйста, не ломайте голову над выбором подарка! Наши вкусы настолько специфичны, что угодить нам могут только
         деньги!
@@ -39,24 +36,11 @@ import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 
 .section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 5vw, 2.5rem); /* Адаптивный размер шрифта */
+  font-size: 2.5rem;
   margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  text-align: left; /* Выравнивание по левому краю */
-  line-height: 1.2;
+  text-align: center;
 }
 
-/* Первая строка */
-.line-1 {
-  align-self: flex-start;
-}
-
-/* Вторая строка со смещением вправо */
-.line-2 {
-  padding-left: 20%; /* Смещение второй строки */
-  margin-top: 0.5rem;
-}
 
 /* Общие стили для "гламурных" слов */
 .accent {
@@ -101,6 +85,12 @@ import WineBottleIcon from '@/components/icons/WineBottleIcon.vue'
 
 .wine-icon {
   flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 600px) {

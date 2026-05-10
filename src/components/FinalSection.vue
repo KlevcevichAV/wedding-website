@@ -5,7 +5,7 @@
         <h3 class="title">Топ-1 мест, куда сходить этой осенью: <span class="main-text">наша свадьба!</span></h3>
         <p class="sub-text">Будем очень рады разделить этот день с вами!</p>
         <div class="final-photo-container">
-          <img src="@/assets/IMG_9372.JPG" alt="Александр и Маргарита" class="final-photo" />
+          <img src="@/assets/IMG_9325.JPG" alt="Александр и Маргарита" class="final-photo" />
         </div>
         <p class="signature">С любовью,<br>Александр и Маргарита</p>
       </div>
