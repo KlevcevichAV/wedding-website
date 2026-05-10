@@ -114,16 +114,9 @@
     margin-top: 0.5rem; /* Смещаем имена чуть ниже в мобильной версии */
   }
 
-  .main-title {
-    font-size: 2.8rem;
-  }
-
-  .names {
-    font-size: 2.2rem;
-  }
-
   .date {
     font-size: 1.4rem;
+    margin-top: -0.3rem; /* Поднимаем дату чуть выше к именам */
   }
 }
 </style>
