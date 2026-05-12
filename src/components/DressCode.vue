@@ -13,6 +13,11 @@
       </div>
 
       <div class="actions">
+        <div class="mute-control">
+          <button class="mute-btn" @click="toggleMute" :title="isMuted ? 'Включить звук' : 'Выключить звук'">
+            <VolumeIcon :muted="isMuted" :size="24" color="var(--color-text)" />
+          </button>
+        </div>
         <button class="btn-outline" @click="openGallery('women')">
           Примеры образов для девушек
         </button>
@@ -33,6 +38,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import ImageGallery from './ImageGallery.vue'
+import VolumeIcon from '@/components/icons/VolumeIcon.vue'
 import backgroundMusicMen from '@/assets/1050761114_1_tiktok_69f75785db7821_01365855.mp3'
 import backgroundMusicWomen from '@/assets/-4884169657562792318 (audio-extractor.net).mp3'
 
@@ -56,6 +62,7 @@ const menImages = Object.values(import.meta.glob('@/assets/dress-code/men/*.JPG'
 
 const isGalleryOpen = ref(false)
 const galleryType = ref('women')
+const isMuted = ref(false)
 const audioMen = ref(null)
 const audioWomen = ref(null)
 
@@ -74,10 +81,25 @@ const openGallery = (type) => {
   galleryType.value = type
   isGalleryOpen.value = true
   
+  if (isMuted.value) return
+
   const currentAudio = type === 'women' ? audioWomen.value : audioMen.value
   if (currentAudio) {
     currentAudio.currentTime = 0
     currentAudio.play().catch(e => console.log('Audio play failed:', e))
+  }
+}
+
+const toggleMute = () => {
+  isMuted.value = !isMuted.value
+  if (isMuted.value) {
+    if (audioMen.value) audioMen.value.pause()
+    if (audioWomen.value) audioWomen.value.pause()
+  } else if (isGalleryOpen.value) {
+    const currentAudio = galleryType.value === 'women' ? audioWomen.value : audioMen.value
+    if (currentAudio) {
+      currentAudio.play().catch(e => console.log('Audio play failed:', e))
+    }
   }
 }
 
@@ -149,8 +171,32 @@ const closeGallery = () => {
 .actions {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.mute-control {
+  display: flex;
+  align-items: center;
+}
+
+.mute-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.mute-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--color-text);
 }
 
 .btn-outline {
@@ -184,6 +230,11 @@ const closeGallery = () => {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+
+  .mute-control {
+    order: -1; /* Кнопка звука сверху на мобилках */
+    margin-bottom: 0.5rem;
   }
   
   .btn-outline {
