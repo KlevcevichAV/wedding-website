@@ -2,9 +2,9 @@
   <section class="final-section">
     <div class="container">
       <div class="content">
-        <h3 class="title">Топ-1 мест, куда сходить этой осенью: <span class="main-text">наша свадьба!</span></h3>
-        <p class="sub-text">Будем очень рады разделить этот день с вами!</p>
-        <p class="signature">С любовью,<br>Александр и Маргарита</p>
+        <h3 class="title">{{ $t('final.title') }} <span class="main-text">{{ $t('final.mainText') }}</span></h3>
+        <p class="sub-text">{{ $t('final.subText') }}</p>
+        <p class="signature" v-html="$t('final.signature')"></p>
       </div>
     </div>
   </section>

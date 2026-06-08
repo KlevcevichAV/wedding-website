@@ -2,16 +2,15 @@
   <section class="wishes">
     <div class="container">
       <h2 class="section-title">
-        <span class="line-1">Смотря какой <span class="accent fabric">Fabric</span>,</span>
-        <span class="line-2">смотря сколько <span class="accent details">Details</span></span>
+        <span class="line-1">{{ $t('wishes.title1') }} <span class="accent fabric">Fabric</span>,</span>
+        <span class="line-2">{{ $t('wishes.title2') }} <span class="accent details">Details</span></span>
       </h2>
       <p class="description">
-        Пожалуйста, не ломайте голову над выбором подарка! Наши вкусы настолько специфичны, что угодить нам могут только
-        деньги!
+        {{ $t('wishes.description1') }}
       </p>
 
       <p class="description">
-        Из-за романтического путешествия мы не сможем в полной мере насладиться красотой и ароматом цветов, зато подаренная Вами бутылочка вина для домашней коллекции придется кстати после возвращения
+        {{ $t('wishes.description2') }}
       </p>
     </div>
   </section>

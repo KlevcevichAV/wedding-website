@@ -1,28 +1,28 @@
 <template>
   <section class="timer-section">
-    <h3 class="timer-title">До торжества осталось:</h3>
+    <h3 class="timer-title">{{ $t('timer.title') }}</h3>
 
     <div v-if="!isExpired" class="timer-container">
       <div class="timer-item">
         <span class="value">{{ timeLeft.days }}</span>
-        <span class="label">{{ declensions.days }}</span>
+        <span class="label">{{ $t('timer.days', timeLeft.days) }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.hours }}</span>
-        <span class="label">{{ declensions.hours }}</span>
+        <span class="label">{{ $t('timer.hours', timeLeft.hours) }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.minutes }}</span>
-        <span class="label">{{ declensions.minutes }}</span>
+        <span class="label">{{ $t('timer.minutes', timeLeft.minutes) }}</span>
       </div>
       <div class="timer-item">
         <span class="value">{{ timeLeft.seconds }}</span>
-        <span class="label">{{ declensions.seconds }}</span>
+        <span class="label">{{ $t('timer.seconds', timeLeft.seconds) }}</span>
       </div>
     </div>
 
     <div v-else class="expired-msg">
-      <h2>Этот счастливый день настал!</h2>
+      <h2>{{ $t('timer.expired') }}</h2>
     </div>
   </section>
 </template>

@@ -1,0 +1,118 @@
+{
+  "menu": {
+    "main": "Inicio",
+    "program": "Programa",
+    "location": "Ubicación",
+    "dresscode": "Código de Vestimenta",
+    "rsvp": "Confirmación",
+    "details": "Detalles",
+    "chat": "Chat de Invitados",
+    "final": "Final"
+  },
+  "hero": {
+    "weddingDay": "DÍA DE LA BODA",
+    "names": "Alexander & Margarita"
+  },
+  "timer": {
+    "title": "Tiempo hasta la celebración:",
+    "expired": "¡Este día feliz ha llegado!",
+    "days": "{n} día | {n} días",
+    "hours": "{n} hora | {n} horas",
+    "minutes": "{n} minuto | {n} minutos",
+    "seconds": "{n} segundo | {n} segundos"
+  },
+  "program": {
+    "title": "Programa del Día",
+    "events": {
+      "gathering": "Reunión de invitados",
+      "ceremony": "Ceremonia",
+      "banquet": "Inicio del banquete",
+      "cake": "Pastel de bodas",
+      "end": "Final de la boda y comienzo de una vida feliz"
+    }
+  },
+  "location": {
+    "title": "Ubicación",
+    "address": "(pueblo Tarasovo, calle Olimpiyskaya, 3)"
+  },
+  "dresscode": {
+    "title": "Código de Vestimenta",
+    "description": "Su presencia es importante para nosotros, y estaremos encantados si sus atuendos apoyan la atmósfera de nuestro día",
+    "women": "Ejemplos de atuendos para damas",
+    "men": "Ejemplos de atuendos para caballeros",
+    "mute": "Silenciar sonido",
+    "unmute": "Activar sonido"
+  },
+  "wishes": {
+    "title1": "Depende de la Tela,",
+    "title2": "depende de los Detalles",
+    "description1": "¡Por favor, no se preocupe por elegir un regalo! Nuestros gustos son tan específicos que solo el dinero puede complacernos.",
+    "description2": "Debido a nuestra luna de miel, no podremos disfrutar plenamente de la belleza y fragancia de las flores, pero una botella de vino para nuestra colección casera será muy bienvenida tras nuestro regreso"
+  },
+  "chat": {
+    "title": "Chat Grupal de Invitados",
+    "description": "Ver nuestra boda a través de sus ojos es un regalo invaluable. Estaremos felices de ver sus fotos, videos y emociones en el chat",
+    "button": "Unirse al Chat"
+  },
+  "rsvp": {
+    "title": "Confirmación (RSVP)",
+    "description": "Por favor, confirme su asistencia completando el siguiente formulario. ¡Tenemos muchas ganas de verle!",
+    "questions": {
+      "attendance": "¿Compartirá la alegría de este día con nosotros?",
+      "who": "¿Quién asistirá?",
+      "whoSub": "Por favor, especifique nombres y apellidos de todos los invitados, incluido su +1, exactamente como en la invitación.",
+      "alcohol": "Preferencias de bebidas:",
+      "song": "¿Hay alguna canción o artista favorito que definitivamente le haga salir a la pista de baile?",
+      "funFact": "Cuéntenos un dato curioso o interesante sobre usted (o un recuerdo relacionado con los novios)",
+      "wishes": "Sus deseos o notas especiales para nosotros:",
+      "introduce": "Por favor, preséntese:"
+    },
+    "options": {
+      "yes": "Asistiré con gusto",
+      "no": "Lamentablemente, no podré asistir"
+    },
+    "placeholders": {
+      "name": "Su nombre y apellido",
+      "guestName": "Nombre del invitado {n}",
+      "alcoholCustom": "¿Qué prefiere exactamente?",
+      "track": "Título de la canción",
+      "optional": "Opcional",
+      "message": "Su mensaje",
+      "selectAlcohol": "Seleccione sus preferencias"
+    },
+    "buttons": {
+      "addGuest": "Añadir invitado",
+      "submitYes": "Enviar formulario",
+      "submitNo": "Rechazar invitación"
+    },
+    "alcohol": {
+      "wine": "Vino",
+      "champagne": "Champán",
+      "vodka": "Vodka",
+      "whiskey": "Whisky",
+      "beer": "Cerveza",
+      "other": "Otro"
+    },
+    "notification": {
+      "title": "¡Nueva respuesta de confirmación!",
+      "status": "Estado",
+      "from": "De",
+      "guests": "Invitados",
+      "alcohol": "Alcohol",
+      "song": "Canción favorita",
+      "funFact": "Dato curioso",
+      "wishes": "Deseos",
+      "unknown": "Desconocido"
+    },
+    "rules": {
+      "required": "Este campo es obligatorio",
+      "requiredSelection": "Por favor, seleccione al menos una opción"
+    }
+  },
+  "final": {
+    "title": "El lugar número 1 para visitar este otoño:",
+    "mainText": "¡nuestra boda!",
+    "subText": "¡Estaremos encantados de compartir este día con ustedes!",
+    "signature": "Con amor,<br>Alexander y Margarita"
+  }
+}

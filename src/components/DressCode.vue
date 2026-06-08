@@ -1,8 +1,8 @@
 <template>
   <section class="dress-code">
     <div class="container">
-      <h2 class="section-title">Дресс-код</h2>
-      <p class="description">Для нас важно ваше присутствие, и нам будет очень приятно, если ваши образы поддержат атмосферу нашего дня</p>
+      <h2 class="section-title">{{ $t('dresscode.title') }}</h2>
+      <p class="description">{{ $t('dresscode.description') }}</p>
       <div class="palette">
         <div v-for="(image, index) in images" 
              :key="index" 
@@ -14,10 +14,14 @@
 
       <div class="actions">
         <button class="btn-outline" @click="openGallery('women')">
-          Примеры образов для девушек
+          {{ $t('dresscode.women') }}
         </button>
         <button class="btn-outline" @click="openGallery('men')">
-          Примеры образов для мужчин
+          {{ $t('dresscode.men') }}
+        </button>
+        <button class="mute-btn-inline" @click="toggleMute" :title="isMuted ? $t('dresscode.unmute') : $t('dresscode.mute')">
+          <svg v-if="isMuted" viewBox="0 0 24 24" class="audio-svg"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+          <svg v-else viewBox="0 0 24 24" class="audio-svg"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
         </button>
       </div>
     </div>
@@ -25,7 +29,9 @@
     <ImageGallery 
       :images="currentGalleryImages" 
       :is-open="isGalleryOpen" 
+      :is-muted="isMuted"
       @close="closeGallery" 
+      @toggle-mute="toggleMute"
     />
   </section>
 </template>
@@ -56,6 +62,7 @@ const menImages = Object.values(import.meta.glob('@/assets/dress-code/men/*.JPG'
 
 const isGalleryOpen = ref(false)
 const galleryType = ref('women')
+const isMuted = ref(false)
 const audioMen = ref(null)
 const audioWomen = ref(null)
 
@@ -70,6 +77,14 @@ const currentGalleryImages = computed(() => {
   return galleryType.value === 'women' ? womenImages : menImages
 })
 
+const toggleMute = () => {
+  isMuted.value = !isMuted.value
+  const currentAudio = galleryType.value === 'women' ? audioWomen.value : audioMen.value
+  if (currentAudio) {
+    currentAudio.muted = isMuted.value
+  }
+}
+
 const openGallery = (type) => {
   galleryType.value = type
   isGalleryOpen.value = true
@@ -77,6 +92,7 @@ const openGallery = (type) => {
   const currentAudio = type === 'women' ? audioWomen.value : audioMen.value
   if (currentAudio) {
     currentAudio.currentTime = 0
+    currentAudio.muted = isMuted.value
     currentAudio.play().catch(e => console.log('Audio play failed:', e))
   }
 }
@@ -149,8 +165,35 @@ const closeGallery = () => {
 .actions {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.mute-btn-inline {
+  background: transparent;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.mute-btn-inline:hover {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+.audio-svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 .btn-outline {
@@ -181,14 +224,22 @@ const closeGallery = () => {
   }
   
   .actions {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
   }
   
   .btn-outline {
-    width: 100%;
-    max-width: 300px;
+    width: auto;
+    flex: 1;
+    max-width: 150px;
+  }
+
+  .mute-btn-inline {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
   }
 }
 

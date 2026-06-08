@@ -1,0 +1,118 @@
+{
+  "menu": {
+    "main": "Home",
+    "program": "Program",
+    "location": "Location",
+    "dresscode": "Dress Code",
+    "rsvp": "RSVP",
+    "details": "Details",
+    "chat": "Guest Chat",
+    "final": "Final"
+  },
+  "hero": {
+    "weddingDay": "WEDDING DAY",
+    "names": "Alexander & Margarita"
+  },
+  "timer": {
+    "title": "Time until celebration:",
+    "expired": "This happy day has arrived!",
+    "days": "{n} day | {n} days",
+    "hours": "{n} hour | {n} hours",
+    "minutes": "{n} minute | {n} minutes",
+    "seconds": "{n} second | {n} seconds"
+  },
+  "program": {
+    "title": "Program of the Day",
+    "events": {
+      "gathering": "Guest Gathering",
+      "ceremony": "Ceremony",
+      "banquet": "Banquet Start",
+      "cake": "Wedding Cake",
+      "end": "Wedding Finale & Happy Life Beginning"
+    }
+  },
+  "location": {
+    "title": "Location",
+    "address": "(Tarasovo village, Olimpiyskaya st., 3)"
+  },
+  "dresscode": {
+    "title": "Dress Code",
+    "description": "Your presence is important to us, and we would be delighted if your outfits supported the atmosphere of our day",
+    "women": "Outfit examples for ladies",
+    "men": "Outfit examples for gentlemen",
+    "mute": "Mute sound",
+    "unmute": "Unmute sound"
+  },
+  "wishes": {
+    "title1": "Depends on the Fabric,",
+    "title2": "depends on the Details",
+    "description1": "Please do not worry about choosing a gift! Our tastes are so specific that only money can please us!",
+    "description2": "Due to our honeymoon, we won't be able to fully enjoy the beauty and fragrance of flowers, but a bottle of wine for our home collection will be very welcome after our return"
+  },
+  "chat": {
+    "title": "Guest Group Chat",
+    "description": "Seeing our wedding through your eyes is a priceless gift. We'll be happy to see your photos, videos, and emotions in the chat",
+    "button": "Join Chat"
+  },
+  "rsvp": {
+    "title": "RSVP",
+    "description": "Please confirm your attendance by filling out the form below. We are really looking forward to seeing you!",
+    "questions": {
+      "attendance": "Will you share the joy of this day with us?",
+      "who": "Who will be attending?",
+      "whoSub": "Please specify the names and surnames of all guests, including your +1, exactly as in the invitation.",
+      "alcohol": "Drink preferences:",
+      "song": "Is there a favorite song or artist that will definitely get you on the dance floor?",
+      "funFact": "Tell us a funny or interesting fact about yourself (or a memory related to the bride/groom)",
+      "wishes": "Your wishes or special notes for us:",
+      "introduce": "Please introduce yourself:"
+    },
+    "options": {
+      "yes": "I'll be there with pleasure",
+      "no": "Unfortunately, I won't be able to"
+    },
+    "placeholders": {
+      "name": "Your First and Last Name",
+      "guestName": "Guest Name {n}",
+      "alcoholCustom": "What exactly do you prefer?",
+      "track": "Track title",
+      "optional": "Optional",
+      "message": "Your message",
+      "selectAlcohol": "Select your preferences"
+    },
+    "buttons": {
+      "addGuest": "Add guest",
+      "submitYes": "Send form",
+      "submitNo": "Decline invitation"
+    },
+    "alcohol": {
+      "wine": "Wine",
+      "champagne": "Champagne",
+      "vodka": "Vodka",
+      "whiskey": "Whiskey",
+      "beer": "Beer",
+      "other": "Other"
+    },
+    "notification": {
+      "title": "New RSVP Response!",
+      "status": "Status",
+      "from": "From",
+      "guests": "Guests",
+      "alcohol": "Alcohol",
+      "song": "Favorite Song",
+      "funFact": "Interesting Fact",
+      "wishes": "Wishes",
+      "unknown": "Unknown"
+    },
+    "rules": {
+      "required": "This field is required",
+      "requiredSelection": "Please select at least one option"
+    }
+  },
+  "final": {
+    "title": "Top-1 place to visit this autumn:",
+    "mainText": "our wedding!",
+    "subText": "We would be delighted to share this day with you!",
+    "signature": "With love,<br>Alexander and Margarita"
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <section class="program-section">
-    <h2 class="section-title">Программа дня</h2>
+    <h2 class="section-title">{{ $t('program.title') }}</h2>
 
     <div class="timeline-container" ref="container" :style="{ height: totalHeight + 'px' }">
       <svg class="timeline-svg" viewBox="0 0 400 1000" preserveAspectRatio="none">
@@ -37,15 +37,25 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, nextTick } from 'vue';
+import { onMounted, onUnmounted, ref, nextTick, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const timeline = [
-  { time: '15:30', title: 'Сбор гостей' },
-  { time: '16:30', title: 'Церемония' },
-  { time: '17:00', title: 'Начало банкета' },
-  { time: '22:00', title: 'Праздничный торт' },
-  { time: '23:00', title: 'Завершение свадьбы и начало счастливой жизни' }
+const { t, locale } = useI18n();
+
+const getTimeline = () => [
+  { time: '15:30', title: t('program.events.gathering') },
+  { time: '16:30', title: t('program.events.ceremony') },
+  { time: '17:00', title: t('program.events.banquet') },
+  { time: '22:00', title: t('program.events.cake') },
+  { time: '23:00', title: t('program.events.end') }
 ];
+
+const timeline = ref(getTimeline());
+
+watch(locale, () => {
+  timeline.value = getTimeline();
+  calculateCoords();
+});
 
 const heart = ref(null);
 const container = ref(null);
@@ -64,7 +74,7 @@ const calculateCoords = () => {
 
   const steps = [0.1, 0.3, 0.5, 0.7, 0.9];
 
-  itemsWithCoords.value = timeline.map((item, index) => {
+  itemsWithCoords.value = timeline.value.map((item, index) => {
     const svgPoint = path.getPointAtLength(steps[index] * pathLength);
     const xPixel = (svgPoint.x / 400) * containerWidth;
     const yPixel = (svgPoint.y / 1000) * currentHeight;

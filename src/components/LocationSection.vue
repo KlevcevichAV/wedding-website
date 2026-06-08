@@ -1,11 +1,11 @@
 <template>
   <section class="map-section">
-    <h2 class="map-title">Место проведения</h2>
+    <h2 class="map-title">{{ $t('location.title') }}</h2>
 
     <!-- Новый блок с локацией -->
     <div class="location-info">
       <p class="location-name">TARASOVO VILLAGE</p>
-      <p class="location-address">(д. Тарасово, ул. Олимпийская, 3)</p>
+      <p class="location-address">{{ $t('location.address') }}</p>
     </div>
 
     <div class="location-gallery">

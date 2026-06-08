@@ -1,10 +1,33 @@
 <template>
   <main class="wedding-app">
-    <div class="theme-toggle">
-      <button @click="toggleTheme" class="toggle-button" :title="isDark ? 'Switch to Light' : 'Switch to Dark'">
-        <span v-if="isDark">☀️</span>
-        <span v-else>🌙</span>
-      </button>
+    <div class="controls-overlay">
+      <div class="theme-toggle">
+        <button @click="toggleTheme" class="toggle-button" :title="isDark ? 'Switch to Light' : 'Switch to Dark'">
+          <span v-if="isDark">☀️</span>
+          <span v-else>🌙</span>
+        </button>
+      </div>
+
+      <div class="language-toggle">
+        <v-menu location="bottom">
+          <template v-slot:activator="{ props }">
+            <button v-bind="props" class="toggle-button" :title="'Change Language'">
+              <span>{{ currentLangLabel }}</span>
+            </button>
+          </template>
+          <v-list class="lang-list">
+            <v-list-item
+              v-for="lang in ['ru', 'en', 'es']"
+              :key="lang"
+              :value="lang"
+              @click="setLanguage(lang)"
+              :class="{ 'active-lang': locale === lang }"
+            >
+              <v-list-item-title>{{ lang.toUpperCase() }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </div>
 
     <button
@@ -19,14 +42,14 @@
 
     <nav :class="['side-menu', { 'is-open': isMenuOpen }]">
       <div class="menu-links">
-        <a href="#hero" @click="isMenuOpen = false">Главная</a>
-        <a href="#program" @click="isMenuOpen = false">Программа</a>
-        <a href="#location" @click="isMenuOpen = false">Место проведения</a>
-        <a href="#dresscode" @click="isMenuOpen = false">Дресс код</a>
-        <a href="#rsvp" @click="isMenuOpen = false">Анкета</a>
-        <a href="#wishes" @click="isMenuOpen = false">Детали</a>
-        <a href="#chat" @click="isMenuOpen = false">Общий чат</a>
-        <a href="#final" @click="isMenuOpen = false">Финал</a>
+        <a href="#hero" @click="isMenuOpen = false">{{ $t('menu.main') }}</a>
+        <a href="#program" @click="isMenuOpen = false">{{ $t('menu.program') }}</a>
+        <a href="#location" @click="isMenuOpen = false">{{ $t('menu.location') }}</a>
+        <a href="#dresscode" @click="isMenuOpen = false">{{ $t('menu.dresscode') }}</a>
+        <a href="#rsvp" @click="isMenuOpen = false">{{ $t('menu.rsvp') }}</a>
+        <a href="#wishes" @click="isMenuOpen = false">{{ $t('menu.details') }}</a>
+        <a href="#chat" @click="isMenuOpen = false">{{ $t('menu.chat') }}</a>
+        <a href="#final" @click="isMenuOpen = false">{{ $t('menu.final') }}</a>
       </div>
     </nav>
 
@@ -46,7 +69,8 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, computed} from 'vue'
+import { useI18n } from 'vue-i18n'
 import HeroSection from './components/HeroSection.vue'
 import ProgramSection from './components/ProgramSection.vue'
 import LocationSection from './components/LocationSection.vue'
@@ -60,6 +84,14 @@ import DecorativeDecor from "@/components/DecorativeDecor.vue";
 
 const isMenuOpen = ref(false)
 const isDark = ref(false)
+const { locale } = useI18n()
+
+const currentLangLabel = computed(() => locale.value.toUpperCase())
+
+const setLanguage = (lang) => {
+  locale.value = lang
+  localStorage.setItem('lang', locale.value)
+}
 
 const toggleTheme = () => {
   isDark.value = !isDark.value
@@ -70,16 +102,40 @@ const toggleTheme = () => {
 
 onMounted(() => {
   isDark.value = document.documentElement.getAttribute('data-theme') === 'dark'
+  
+  const savedLang = localStorage.getItem('lang')
+  if (savedLang) {
+    locale.value = savedLang
+  } else {
+    // Определяем язык устройства
+    const navLang = navigator.language.split('-')[0] // 'ru-RU' -> 'ru'
+    const supportedLangs = ['ru', 'en', 'es']
+    
+    if (supportedLangs.includes(navLang)) {
+      locale.value = navLang
+    } else {
+      locale.value = 'ru' // Значение по умолчанию
+    }
+  }
 })
 </script>
 
 <style scoped>
-/* Кнопка смены темы */
-.theme-toggle {
+/* Кнопки управления */
+.controls-overlay {
   position: fixed;
   top: 2rem;
   left: 2rem;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.theme-toggle, .language-toggle {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .toggle-button {
@@ -100,6 +156,17 @@ onMounted(() => {
 .toggle-button:hover {
   transform: scale(1.1);
   border-color: var(--color-primary);
+}
+
+.lang-list {
+  background: var(--color-background-soft) !important;
+  border: 1px solid var(--color-border);
+  margin-top: 5px;
+}
+
+.active-lang {
+  color: var(--color-primary);
+  font-weight: bold;
 }
 
 /* Кнопка бургера */

@@ -1,11 +1,10 @@
 <template>
   <section class="dress-code">
     <div class="container">
-      <h2 class="section-title">Общий чат гостей</h2>
+      <h2 class="section-title">{{ $t('chat.title') }}</h2>
 
       <p class="description">
-        Увидеть нашу свадьбу вашими глазами — бесценный подарок.
-        Будем рады вашим фото, видео и эмоциям в общем чате
+        {{ $t('chat.description') }}
         <HeartIcon :size="18" color="#78866b" filled class="heart-inline" />
       </p>
 
@@ -26,7 +25,7 @@
           />
         </svg>
 
-        Присоединиться к чату
+        {{ $t('chat.button') }}
       </a>
     </div>
   </section>

@@ -1,15 +1,15 @@
 <template>
   <section class="rsvp">
     <div class="container">
-      <h2 class="section-title">RSVP</h2>
+      <h2 class="section-title">{{ $t('rsvp.title') }}</h2>
       <p class="description">
-        Пожалуйста, подтвердите ваше присутствие, заполнив форму ниже. Мы очень ждем встречи с вами!
+        {{ $t('rsvp.description') }}
       </p>
 
       <v-form ref="formRef" v-model="isFormValid" @submit.prevent="submitForm" class="rsvp-form">
         <!-- Attendance Question -->
         <div class="form-section">
-          <p class="question-text">Разделите ли вы с нами радость этого дня?</p>
+          <p class="question-text">{{ $t('rsvp.questions.attendance') }}</p>
           <v-radio-group
             v-model="form.status"
             :rules="[rules.required]"
@@ -17,17 +17,17 @@
             class="mt-2"
             @update:model-value="onStatusChange"
           >
-            <v-radio label="С удовольствием приду" value="yes"></v-radio>
-            <v-radio label="К сожалению, не смогу" value="no"></v-radio>
+            <v-radio :label="$t('rsvp.options.yes')" value="yes"></v-radio>
+            <v-radio :label="$t('rsvp.options.no')" value="no"></v-radio>
           </v-radio-group>
         </div>
 
         <!-- Declining Guest Name -->
         <div v-if="form.status === 'no'" class="form-section">
-          <p class="question-text">Пожалуйста, представьтесь:</p>
+          <p class="question-text">{{ $t('rsvp.questions.introduce') }}</p>
           <v-text-field
             v-model="form.declinerName"
-            label="Ваши Имя и Фамилия"
+            :label="$t('rsvp.placeholders.name')"
             :rules="[rules.required]"
             variant="outlined"
             density="comfortable"
@@ -38,13 +38,13 @@
         <template v-if="form.status === 'yes'">
           <!-- Guests Section -->
           <div class="form-section">
-            <p class="question-text">Кто будет присутствовать?</p>
-            <p class="sub-description">Пожалуйста, укажите имена и фамилии всех гостей, включая вашего +1, точно так же, как в приглашении.</p>
+            <p class="question-text">{{ $t('rsvp.questions.who') }}</p>
+            <p class="sub-description">{{ $t('rsvp.questions.whoSub') }}</p>
             
             <div v-for="(guest, index) in form.guests" :key="index" class="guest-input-wrapper">
               <v-text-field
                 v-model="form.guests[index]"
-                :label="index === 0 ? 'Ваши Имя и Фамилия' : `Имя гостя ${index + 1}`"
+                :label="index === 0 ? $t('rsvp.placeholders.name') : $t('rsvp.placeholders.guestName', { n: index + 1 })"
                 :rules="[rules.required]"
                 variant="outlined"
                 density="comfortable"
@@ -66,17 +66,17 @@
               @click="addGuest"
               class="mt-2"
             >
-              Добавить гостя
+              {{ $t('rsvp.buttons.addGuest') }}
             </v-btn>
           </div>
 
           <!-- Alcohol Preferences -->
           <div class="form-section">
-            <p class="question-text">Пожелания по напиткам:</p>
+            <p class="question-text">{{ $t('rsvp.questions.alcohol') }}</p>
             <v-select
               v-model="form.alcohol"
               :items="alcoholOptions"
-              label="Выберите ваши предпочтения"
+              :label="$t('rsvp.placeholders.selectAlcohol')"
               multiple
               chips
               :rules="[rules.requiredSelection]"
@@ -86,9 +86,9 @@
             ></v-select>
             
             <v-text-field
-              v-if="form.alcohol.includes('Другое')"
+              v-if="form.alcohol.includes($t('rsvp.alcohol.other'))"
               v-model="form.alcoholCustom"
-              label="Что именно вы предпочитаете?"
+              :label="$t('rsvp.placeholders.alcoholCustom')"
               :rules="[rules.required]"
               variant="outlined"
               density="comfortable"
@@ -98,10 +98,10 @@
 
           <!-- Favorite Song -->
           <div class="form-section">
-            <p class="question-text">Есть ли у вас любимая песня или исполнитель, которые точно заставят вас выйти на танцпол?</p>
+            <p class="question-text">{{ $t('rsvp.questions.song') }}</p>
             <v-text-field
               v-model="form.favoriteSong"
-              label="Название трека"
+              :label="$t('rsvp.placeholders.track')"
               variant="outlined"
               density="comfortable"
               class="mt-2"
@@ -110,10 +110,10 @@
 
           <!-- Fun Fact -->
           <div class="form-section">
-            <p class="question-text">Расскажите забавный или интересный факт о себе (или воспоминание, связанное с женихом/невестой)</p>
+            <p class="question-text">{{ $t('rsvp.questions.funFact') }}</p>
             <v-textarea
               v-model="form.funFact"
-              label="По желанию"
+              :label="$t('rsvp.placeholders.optional')"
               variant="outlined"
               auto-grow
               rows="2"
@@ -123,10 +123,10 @@
 
           <!-- Wishes / Notes -->
           <div class="form-section">
-            <p class="question-text">Ваши пожелания или особые пометки для нас:</p>
+            <p class="question-text">{{ $t('rsvp.questions.wishes') }}</p>
             <v-textarea
               v-model="form.wishes"
-              label="Ваше сообщение"
+              :label="$t('rsvp.placeholders.message')"
               variant="outlined"
               auto-grow
               rows="3"
@@ -146,7 +146,7 @@
             :disabled="!isFormValid || loading"
             class="submit-btn"
           >
-            {{ form.status === 'no' ? 'Отклонить приглашение' : 'Отправить анкету' }}
+            {{ form.status === 'no' ? $t('rsvp.buttons.submitNo') : $t('rsvp.buttons.submitYes') }}
           </v-btn>
         </div>
       </v-form>
@@ -155,19 +155,23 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const formRef = ref(null)
 const isFormValid = ref(false)
 const loading = ref(false)
 
-const alcoholOptions = [
-  'Вино',
-  'Шампанское',
-  'Виски',
-  'Пиво',
-  'Другое'
-]
+const alcoholOptions = computed(() => [
+  t('rsvp.alcohol.wine'),
+  t('rsvp.alcohol.champagne'),
+  t('rsvp.alcohol.vodka'),
+  t('rsvp.alcohol.whiskey'),
+  t('rsvp.alcohol.beer'),
+  t('rsvp.alcohol.other')
+])
 
 const form = reactive({
   status: 'yes',
@@ -181,8 +185,8 @@ const form = reactive({
 })
 
 const rules = {
-  required: v => !!v || 'Это поле обязательно',
-  requiredSelection: v => (v && v.length > 0) || 'Пожалуйста, выберите хотя бы один вариант'
+  required: v => !!v || t('rsvp.rules.required'),
+  requiredSelection: v => (v && v.length > 0) || t('rsvp.rules.requiredSelection')
 }
 
 const onStatusChange = () => {
@@ -210,34 +214,34 @@ const submitForm = async () => {
   const token = import.meta.env.VITE_TELEGRAM_TOKEN
   const chatId = import.meta.env.VITE_CHAT_ID
 
-  let message = `🔔 **Новый ответ на приглашение!**\n`
+  let message = `🔔 **${t('rsvp.notification.title')}**\n`
   message += `━━━━━━━━━━━━━━━━━━\n`
   
   if (form.status === 'no') {
-    message += `📍 **Статус:** ❌ К сожалению, не смогу\n`
-    message += `👤 **От:** ${form.declinerName || 'Неизвестно'}\n`
+    message += `📍 **${t('rsvp.notification.status')}:** ❌ ${t('rsvp.options.no')}\n`
+    message += `👤 **${t('rsvp.notification.from')}:** ${form.declinerName || t('rsvp.notification.unknown')}\n`
   } else {
-    message += `📍 **Статус:** ✅ С удовольствием приду\n`
-    message += `👥 **Гости:**\n${form.guests.filter(g => g).map(g => `  • ${g}`).join('\n')}\n`
+    message += `📍 **${t('rsvp.notification.status')}:** ✅ ${t('rsvp.options.yes')}\n`
+    message += `👥 **${t('rsvp.notification.guests')}:**\n${form.guests.filter(g => g).map(g => `  • ${g}`).join('\n')}\n`
     
     const alcoholList = form.alcohol.map(item => {
-      if (item === 'Другое' && form.alcoholCustom) {
-        return `Другое (${form.alcoholCustom})`
+      if (item === t('rsvp.alcohol.other') && form.alcoholCustom) {
+        return `${t('rsvp.alcohol.other')} (${form.alcoholCustom})`
       }
       return item
     })
-    message += `🍷 **Алкоголь:** ${alcoholList.join(', ')}\n`
+    message += `🍷 **${t('rsvp.notification.alcohol')}:** ${alcoholList.join(', ')}\n`
     
     if (form.favoriteSong) {
-      message += `🎵 **Любимая песня:** ${form.favoriteSong}\n`
+      message += `🎵 **${t('rsvp.notification.song')}:** ${form.favoriteSong}\n`
     }
     
     if (form.funFact) {
-      message += `✨ **Интересный факт:** ${form.funFact}\n`
+      message += `✨ **${t('rsvp.notification.funFact')}:** ${form.funFact}\n`
     }
     
     if (form.wishes) {
-      message += `💬 **Пожелания:** ${form.wishes}\n`
+      message += `💬 **${t('rsvp.notification.wishes')}:** ${form.wishes}\n`
     }
   }
   
