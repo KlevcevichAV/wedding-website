@@ -3,7 +3,7 @@
     <div class="container">
       <h2 class="section-title">RSVP</h2>
       <p class="description">
-        Пожалуйста, подтвердите ваше присутствие до 11.08 включительно, заполнив форму ниже.
+        Пожалуйста, подтвердите ваше присутствие до 14.08 включительно, заполнив форму ниже.
       </p>
 
       <v-form ref="formRef" v-model="isFormValid" @submit.prevent="submitForm" class="rsvp-form">
